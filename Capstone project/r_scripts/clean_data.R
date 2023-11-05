@@ -1,6 +1,6 @@
 ## Data Cleaning
 title_cleaning  = function(df){
-  job_titled <- entry_job %>%
+  job_titled <- df %>%
     distinct(title,                 # job title
              description.x,         # job description
              location,              # job location
@@ -33,19 +33,22 @@ title_cleaning  = function(df){
                    if_else(str_detect(title, "cashier"), "cashier",
                    if_else(str_detect(title, "server"), "server",
                            title)
-                   ))))))))))))))) %>%
-    # filter(str_detect(title, regex("server", ignore_case = TRUE))
-    # ) %>% # Filter titles with 'analyst', case insensitive
-    # count(title) %>% # Count the number of occurrences for each title
-    # arrange(desc(n))
-    #   
-    group_by(title) %>%
-    summarize(n = n()) %>%
-    filter(n > 8) %>%
-    arrange(desc(n)) 
-  
-  
-  
-  return(job_titled)
+                   )))))))))))))))
+
+    
+    frequent_jobs <- job_titled %>%
+      count(title) %>%
+      filter(n > 6)
+    
+    # Now join this back to the original job table to filter those jobs
+    filtered_jobs <- job_titled %>%
+      semi_join(frequent_jobs, by = "title")
+
+  return(filtered_jobs)
 }
 
+# filter(str_detect(title, regex("server", ignore_case = TRUE))
+# ) %>% # Filter titles with 'analyst', case insensitive
+# count(title) %>% # Count the number of occurrences for each title
+# arrange(desc(n))
+#   
