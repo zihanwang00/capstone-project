@@ -15,22 +15,24 @@ companies <- read_csv("./data/company_details/companies.csv")
 job_skill <- read_csv("./data/job_details/job_skills.csv")
 
 job_skill <- job_skill_data(job_skill)
-entry_job <- get_data(jobs, c("Entry level"))
+get_job <- get_data(jobs, c("Entry level", "Mid-Senior level"))
 
 
 
 # Check Missing Value
-entry_job %>%
+get_job %>%
   summarise_all(~sum(is.na(.))/n()*100)
 
-cleaned_entry <- title_cleaning(entry_job)
+job_cleaned <- title_cleaning(get_job)
+job_cleaned %>% count(title) %>% arrange(desc(n))
 
 # 选country in US, post date after 
 #' Task 1: What are the trending jobs with the highest number of job postings?
-#' Clean Up Job Title, clean up 后选前100个name
+#' Clean Up Job Title, clean up 后选前 n> 10 的title
+#' 
 #' animated line graph to show how the number of job postings change over time
 
-entry_job %>%
+get_job %>%
   select(title) %>%
   group_by(title) %>%
   summarize(n = n()) %>%
