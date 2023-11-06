@@ -1,10 +1,10 @@
 ## Data Cleaning
 title_cleaning  = function(df){
-  job_titled <- df %>%
+  job_titled <- get_job %>%
     distinct(title,                 # job title
              description.x,         # job description
              location,              # job location
-             original_listed_time,  # job listed time
+             listed_time,  # job listed time
              expiry,                # job expiration time
              name,                  # company name
              state,                 # company state
@@ -21,7 +21,8 @@ title_cleaning  = function(df){
                              (str_detect(title, "scientist") | str_detect(title, "analyst") | str_detect(title, "engineer")),
                            "data scientist/analyst/engineer",
                    if_else(str_detect(title, "scientist"),  "scientist",
-                   if_else(str_detect(title, "analyst"), "analyst",
+                   if_else(str_detect(title, "business") & str_detect(title, "analyst"), "business analyst",
+                   if_else(str_detect(title, "financial") & str_detect(title, "analyst"), "financial analyst",        
                    if_else(str_detect(title, "product") & str_detect(title, "manager"),
                            "product manager",
                    if_else((str_detect(title, "project") | str_detect(title, "program")) & str_detect(title, "manager"),
@@ -33,12 +34,17 @@ title_cleaning  = function(df){
                    if_else(str_detect(title, "cashier"), "cashier",
                    if_else(str_detect(title, "server"), "server",
                            title)
-                   )))))))))))))))
+                    )))))))))))))))) 
+  # %>%
+  # filter(str_detect(title, regex("analyst", ignore_case = TRUE))
+  # ) %>% # Filter titles with 'analyst', case insensitive
+  # count(title) %>% # Count the number of occurrences for each title
+  # arrange(desc(n))
 
     
     frequent_jobs <- job_titled %>%
       count(title) %>%
-      filter(n > 6)
+      filter(n > 20)
     
     # Now join this back to the original job table to filter those jobs
     filtered_jobs <- job_titled %>%
@@ -47,8 +53,4 @@ title_cleaning  = function(df){
   return(filtered_jobs)
 }
 
-# filter(str_detect(title, regex("server", ignore_case = TRUE))
-# ) %>% # Filter titles with 'analyst', case insensitive
-# count(title) %>% # Count the number of occurrences for each title
-# arrange(desc(n))
-#   
+
