@@ -1,10 +1,11 @@
 ## Data Cleaning
 title_cleaning  = function(df){
-  job_titled <- get_job %>%
+  job_titled <- df %>%
+    filter(country == 'US') %>%
     distinct(title,                 # job title
              description.x,         # job description
              location,              # job location
-             listed_time,  # job listed time
+             original_listed_time,  # job listed time
              expiry,                # job expiration time
              name,                  # company name
              state,                 # company state
