@@ -1,13 +1,14 @@
-library(tidyverse)
 library(dplyr)
+library(tidyverse)
 library(lubridate)
 library(stringr)
+
 
 setwd("~/Documents/GitHub/capstone-project/Capstone project")
 
 source("./r_scripts/get_data.R")
 source("./r_scripts/clean_data.R")
-
+source("./r_scripts/visualizations.R")
 
 
 jobs <- read_csv("./data/postings/job_postings.csv")
@@ -15,20 +16,32 @@ companies <- read_csv("./data/company_details/companies.csv")
 job_skill <- read_csv("./data/job_details/job_skills.csv")
 
 job_skill <- job_skill_data(job_skill)
-get_job <- get_data(jobs, c("Entry level", "Mid-Senior level"))
+get_job <- get_data(jobs, c("Entry level"))
+job_cleaned <- title_cleaning(get_job)
 
-
-
-# Check Missing Value
+# Data Cleaning
+## Check Missing Value
 get_job %>%
   summarise_all(~sum(is.na(.))/n()*100)
 
-job_cleaned <- title_cleaning(get_job)
+
+word_cloud(get_job)
+line_graph(job_cleaned)
+
+
+
 job_cleaned %>% count(title) %>% arrange(desc(n))
 
-# 选country in US, post date after 
+unique_dates <- job_cleaned %>% select(original_listed_time) %>% arrange(original_listed_time) %>% unique()
+
+
+
+job_cleaned <- write_csv(job_cleaned, "cleaned_jobs.csv")
+
+
+# Choose country in US, post date after 
 #' Task 1: What are the trending jobs with the highest number of job postings?
-#' Clean Up Job Title, clean up 后选前 n> 10 的title
+#' Clean Up Job Title, 
 #' 
 #' animated line graph to show how the number of job postings change over time
 
