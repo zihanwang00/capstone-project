@@ -21,7 +21,10 @@ job_cleaned <- title_cleaning(get_job)
 
 # Data Cleaning
 ## Check Missing Value
-get_job %>%
+jobs %>%
+  select(max_salary,
+         min_salary,
+         med_salary) %>%
   summarise_all(~sum(is.na(.))/n()*100)
 
 
@@ -52,6 +55,12 @@ get_job %>%
   arrange(desc(n))
 
 
+#' Salary Prediction: (record linkage package)
+#' If range is the outcome, just pick the middle point -- 
+#' Regression of a Range as a outcome (If the outcome is range)
+#' Choose the outcome to be middle point and stand deviation
+#' 
+#' 
 #' 1. What are the trending jobs with the highest number of job postings?
 #' 
 #' 
@@ -62,3 +71,7 @@ get_job %>%
 #' skill_bar (at job_skills.csv)
 #' 
 #' 
+#' time series forecasting (number of job postings)
+#' text summarizarion
+#' skill analysis
+#' salary prediction
