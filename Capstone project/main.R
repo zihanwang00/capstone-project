@@ -7,13 +7,13 @@ library(corrplot)
 
 setwd("~/Documents/GitHub/capstone-project/Capstone project")
 
-source("./r_scripts/get_data.R")
 source("./r_scripts/clean_data.R")
 source("./r_scripts/visualizations.R")
 
 
 jobs <- read_csv("./data/DS_jobs/ds_salaries.csv")
 
+cleaned_jobs <- clean_data(jobs)
 #' Choose job name
 #' Choose job country
 #' Choose Level
@@ -23,6 +23,11 @@ summary(jobs)
 na_ratio <- jobs %>%
   summarise_all(~sum(is.na(.))/n()*100)
 
+str(jobs)
+
+job_title <- jobs %>% 
+  select(job_title) %>%
+  unique()
 # visualization
 
 # correlation
