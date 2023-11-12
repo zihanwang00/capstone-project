@@ -2,6 +2,7 @@ library(dplyr)
 library(tidyverse)
 library(lubridate)
 library(stringr)
+library(corrplot)
 
 
 setwd("~/Documents/GitHub/capstone-project/Capstone project")
@@ -11,25 +12,26 @@ source("./r_scripts/clean_data.R")
 source("./r_scripts/visualizations.R")
 
 
-jobs <- read_csv("./data/postings/job_postings.csv")
-companies <- read_csv("./data/company_details/companies.csv")
-job_skill <- read_csv("./data/job_details/job_skills.csv")
+jobs <- read_csv("./data/DS_jobs/ds_salaries.csv")
 
-job_skill <- job_skill_data(job_skill)
-get_job <- get_data(jobs, c("Entry level"))
-job_cleaned <- title_cleaning(get_job)
+#' Choose job name
+#' Choose job country
+#' Choose Level
+#' 
+summary(jobs)
 
-# Data Cleaning
-## Check Missing Value
-jobs %>%
-  select(max_salary,
-         min_salary,
-         med_salary) %>%
+na_ratio <- jobs %>%
   summarise_all(~sum(is.na(.))/n()*100)
 
+# visualization
 
-word_cloud(get_job)
-line_graph(job_cleaned)
+# correlation
+
+# modeling
+
+lm(salary ~ experience_level * job_title * employee_residence * remote_ratio, data = jobs)
+
+
 
 
 
@@ -47,12 +49,6 @@ job_cleaned <- write_csv(job_cleaned, "cleaned_jobs.csv")
 #' Clean Up Job Title, 
 #' 
 #' animated line graph to show how the number of job postings change over time
-
-get_job %>%
-  select(title) %>%
-  group_by(title) %>%
-  summarize(n = n()) %>%
-  arrange(desc(n))
 
 
 #' Salary Prediction: (record linkage package)
