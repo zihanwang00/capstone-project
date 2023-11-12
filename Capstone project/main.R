@@ -18,35 +18,29 @@ cleaned_jobs <- clean_data(jobs)
 #' Choose job country
 #' Choose Level
 #' 
-summary(jobs)
 
 na_ratio <- jobs %>%
   summarise_all(~sum(is.na(.))/n()*100)
 
-str(jobs)
 
 job_title <- cleaned_jobs %>% 
   select(job_title) %>%
   unique()
-# visualization
 
+job_cleaned <- write_csv(cleaned_jobs, "cleaned_jobs.csv")
+
+# visualization
+salary_plot(cleaned_jobs)
+plot_histograms(cleaned_jobs, "remote_ratio")
 # correlation
 
-# modeling
-
-lm(salary ~ experience_level * job_title * employee_residence * remote_ratio, data = jobs)
-
-
-
-
+# modeling: knn, random forest
 
 job_cleaned %>% count(title) %>% arrange(desc(n))
 
 unique_dates <- job_cleaned %>% select(original_listed_time) %>% arrange(original_listed_time) %>% unique()
 
 
-
-job_cleaned <- write_csv(job_cleaned, "cleaned_jobs.csv")
 
 
 # Choose country in US, post date after 
