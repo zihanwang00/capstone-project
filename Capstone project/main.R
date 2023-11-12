@@ -2,7 +2,7 @@ library(dplyr)
 library(tidyverse)
 library(lubridate)
 library(stringr)
-library(corrplot)
+library(tools)
 
 
 setwd("~/Documents/GitHub/capstone-project/Capstone project")
@@ -25,7 +25,7 @@ na_ratio <- jobs %>%
 
 str(jobs)
 
-job_title <- jobs %>% 
+job_title <- cleaned_jobs %>% 
   select(job_title) %>%
   unique()
 # visualization
