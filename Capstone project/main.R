@@ -31,16 +31,13 @@ job_cleaned <- write_csv(cleaned_jobs, "cleaned_jobs.csv")
 
 # visualization
 salary_plot(cleaned_jobs)
+quantile_plot(box_plot)
+box_plot(box_plot)
 plot_histograms(cleaned_jobs, "remote_ratio")
-# correlation
+plot_histograms(cleaned_jobs, "experience_level")
+
 
 # modeling: knn, random forest
-
-job_cleaned %>% count(title) %>% arrange(desc(n))
-
-unique_dates <- job_cleaned %>% select(original_listed_time) %>% arrange(original_listed_time) %>% unique()
-
-
 
 
 # Choose country in US, post date after 
