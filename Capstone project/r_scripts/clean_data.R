@@ -25,13 +25,16 @@ clean_data <- function(jobs_df) {
       employment_type = as.factor(employment_type),
       employee_residence = as.factor(employee_residence),
       remote_ratio = as.factor(remote_ratio),
-      job_title = as.factor(toTitleCase(job_title)) 
+      job_title = as.factor(toTitleCase(job_title)),
+      employee_residence = countrycode(employee_residence, "iso2c", "iso3c")
     ) %>%
     select(experience_level, 
            job_title, 
            salary_in_usd, 
            employee_residence, 
-           remote_ratio)
+           remote_ratio,
+           work_year, 
+           salary_currency)
   
       
   return(cleaned_df)
