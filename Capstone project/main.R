@@ -1,19 +1,29 @@
 library(dplyr)
-library(tidyverse)
-library(lubridate)
 library(stringr)
 library(tools)
-
+library(tidyverse)
+library(lubridate)
+library(countrycode)
 
 setwd("~/Documents/GitHub/capstone-project/Capstone project")
 
 source("./r_scripts/clean_data.R")
+source("./r_scripts/inflation.R")
 source("./r_scripts/visualizations.R")
+source("./r_scripts/fit_model.R")
 
 
 jobs <- read_csv("./data/DS_jobs/ds_salaries.csv")
 
-cleaned_jobs <- clean_data(jobs)
+cleaned_jobs <- jobs %>%
+  clean_data() %>%
+  rowwise() %>%
+  mutate(salary_in_usd = adjust_salary(work_year, salary_in_usd, salary_currency)) %>%
+  ungroup() %>%
+  select(-work_year, -salary_currency)
+
+write_csv(cleaned_jobs, "cleaned_jobs.csv")
+
 #' Choose job name
 #' Choose job country
 #' Choose Level
@@ -25,9 +35,25 @@ na_ratio <- jobs %>%
 
 job_title <- cleaned_jobs %>% 
   select(job_title) %>%
-  unique()
+  group_by(job_title) %>%
+  summarise(n = n()) %>%
+  arrange(desc(n))
 
-job_cleaned <- write_csv(cleaned_jobs, "cleaned_jobs.csv")
+cleaned_jobs %>% 
+  select(experience_level) %>%
+  group_by(experience_level) %>%
+  summarise(n = n()) %>%
+  arrange(desc(n))
+
+residence <- cleaned_jobs %>% 
+  select(job_title) %>%
+  group_by(job_title) %>%
+  summarise(n = n()) %>%
+  arrange(desc(n))
+
+
+
+
 
 # visualization
 salary_plot(cleaned_jobs)
@@ -38,13 +64,9 @@ plot_histograms(cleaned_jobs, "experience_level")
 
 
 # modeling: knn, random forest
+linear <- linear_model(cleaned_jobs)
 
 
-# Choose country in US, post date after 
-#' Task 1: What are the trending jobs with the highest number of job postings?
-#' Clean Up Job Title, 
-#' 
-#' animated line graph to show how the number of job postings change over time
 
 
 #' Salary Prediction: (record linkage package)
@@ -52,7 +74,7 @@ plot_histograms(cleaned_jobs, "experience_level")
 #' Regression of a Range as a outcome (If the outcome is range)
 #' Choose the outcome to be middle point and stand deviation
 #' 
-#' 
+#' Average salary across different countries for specific job
 #' 1. What are the trending jobs with the highest number of job postings?
 #' 
 #' 
