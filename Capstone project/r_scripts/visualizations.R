@@ -5,6 +5,7 @@ salary_plot <- function(data) {
     geom_histogram(binwidth = 5000, fill = "blue", color = "black") + 
     labs(title = "Salary Distribution", x = "Salary in USD", y = "Frequency")
 }
+
 quantile_plot <- function(data){  
   ggplot(data, aes(sample = salary_in_usd)) + 
     stat_qq() + 
