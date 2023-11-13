@@ -8,14 +8,15 @@
 #
 
 library(shiny)
-source("main.R")
+# source("main.R")
+source("utilities.R")
 # Define UI for application that draws a histogram
 ui <- fluidPage(
 
     # Application title
     titlePanel("Salary Prediction"),
 
-    # Selection input, selec job titles 
+    # Selection input, select job titles 
     sidebarLayout(
       position = 'left',
       
@@ -24,11 +25,30 @@ ui <- fluidPage(
                 label = h3("Choose a Job Title"),
                 choices = c(job_title)
                 ),
+        selectInput("exp_level", 
+                    label = h3("Choose Experience Level"),
+                    choices = list("Senior" = "SE",
+                                   "Mid" = "MI",
+                                   "Entry" = "EN",
+                                   "Executive" = "EX")
+                    ),
+        selectInput("remote_rate", 
+                    label = h3("Choose Remote Ratio"),
+                    choices = list("On-Site" = "0",
+                                   "Hybrid" = "50",
+                                   "Remote" = "100")
+                    ),
+        selectInput("emp_residence", 
+                    label = h3("Choose Residence of Employement"),
+                    choices = c(unique(cleaned_jobs$employee_residence))
+                    ),
       ),
+      
       mainPanel(
         tabsetPanel(
           type = "tabs",
-          tabPanel("SaLary Distribution", plotOutput("salary_plot")),
+          tabPanel("Salary Distribution", plotOutput("dist_plot")),
+          tabPanel("World Map", plotOutput("salary_plot")),
         ),
       )
       
@@ -39,23 +59,22 @@ ui <- fluidPage(
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
-  get_title <- reactive({
-    if (!is.null(input$job_title)) {
-      cleaned_jobs = cleaned_jobs |> 
-        filter(job_title %in% !!input$job_title) 
-    }
-  })
+  
+  ################## Text of Salary Prediction ############################
 
-
-    output$distPlot <- renderPlot({
-        # generate bins based on input$bins from ui.R
-        x    <- faithful[, 2]
-        bins <- seq(min(x), max(x), length.out = input$bins + 1)
-
-        # draw the histogram with the specified number of bins
-        hist(x, breaks = bins, col = 'darkgray', border = 'white',
-             xlab = 'Waiting time to next eruption (in mins)',
-             main = 'Histogram of waiting times')
+  
+  ################## Salary Distribution, Box Plot ########################
+  output$dist_plot <- renderPlot({
+    data %>%
+      filter(job_title == input$job_title) %>%
+      filter(experience_level == input$exp_level) %>%
+      filter(remote_ratio == input$remote_rate) %>%
+      salary_dist_plot()
+  })  
+  
+  ################## World Map ############################################
+    output$salary_plot <- renderPlot({
+      world_map(input$job_title, input$exp_level, input$remote_rate)
     })
 }
 
