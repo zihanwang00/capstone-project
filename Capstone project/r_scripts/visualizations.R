@@ -5,6 +5,20 @@ salary_plot <- function(data) {
     geom_histogram(binwidth = 5000, fill = "blue", color = "black") + 
     labs(title = "Salary Distribution", x = "Salary in USD", y = "Frequency")
 }
+quantile_plot <- function(data){  
+  ggplot(data, aes(sample = salary_in_usd)) + 
+    stat_qq() + 
+    stat_qq_line() + 
+    ggtitle("Normal Q-Q Plot of Salary") +
+    xlab("Theoretical Quantiles") + 
+    ylab("Sample Quantiles")
+}
+
+box_plot <- function(data){
+  ggplot(data, aes(y = salary_in_usd)) + 
+    geom_boxplot(fill = "lightblue", colour = "darkblue") + 
+    labs(title = "Boxplot of Salaries", y = "Salary in USD")
+}
 
 
 plot_histograms <- function(data, column) {
