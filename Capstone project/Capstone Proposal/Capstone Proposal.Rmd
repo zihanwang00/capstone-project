@@ -1,0 +1,35 @@
+---
+title: "Capstone Project Proposal"
+author: "Zihan Wang"
+date: "2023-10-12"
+
+output: html_document
+---
+
+## Analysis of LinkedIn Job Postings
+
+### Project Description:
+
+LinkedIn is a vital platform for professionals worldwide in the age of technology and digital networking. One of its critical functions is as a job portal where organizations post vacancies and job-seekers apply. This project aims to undertake a comprehensive statistical analysis of job postings on LinkedIn to glean insights into hiring trends, sought-after skills, geographic preferences, and various other dimensions that may shape the current employment landscape. The analysis will provide job seekers, HRs, and industry experts with data-driven insights to make informed decisions.
+
+### Dataset Description and Source:
+
+The dataset in focus is sourced from Kaggle, titled "LinkedIn Job Postings." It is available at [LinkedIn Job Postings](https://www.kaggle.com/datasets/arshkon/linkedin-job-postings/data). This dataset comprises several attributes related to job postings on LinkedIn, including but not limited to job titles, company names, job descriptions, skills required, locations, and other relevant details.
+
+### Questions to Answer:
+
+##### 1. What are the trending industries/sectors with the highest number of job postings?
+Real-world applicability: This will help job seekers target industries that are currently hiring the most. 
+
+##### 2. Which geographic locations are most preferred by employers for specific roles or industries?
+Real-world applicability: Job seekers can target their job search based on locations that have a higher demand for their skill set. 
+
+##### 3. What are the most sought-after skills across various industries? 
+Real-world applicability: Professionals can upskill or reskill themselves based on the demands of the job market. Training institutions can also align their courses with the current demands of the market.
+
+### Planned Analysis:
+
+-   Descriptive Statistics: To understand the basic distribution and trends in the dataset like the average number of job postings per company, distribution of jobs based on location, etc.
+-   Trend Analysis: Analyze monthly or yearly trends in job postings, if the dataset has a temporal aspect. Text Analysis: Dive deep into the job descriptions and required skills using natural language processing techniques to identify commonly demanded skills and job requirements.
+-   Geospatial Analysis: Using the location data to plot a heatmap of job postings, helping visually identify job hotspots.
+-   Correlation and Regression Analysis: Understand if there's any relationship between attributes, like if certain industries prefer specific locations, etc.
