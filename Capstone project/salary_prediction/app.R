@@ -23,13 +23,13 @@ ui <- fluidPage(
       sidebarPanel(
         selectInput("job_title", 
                 label = h3("Choose a Job Title"),
-                choices = c(job_title)
+                choices = c(unique(data$job_title))
                 ),
         selectInput("exp_level", 
                     label = h3("Choose Experience Level"),
-                    choices = list("Senior" = "SE",
+                    choices = list("Entry" = "EN",
                                    "Mid" = "MI",
-                                   "Entry" = "EN",
+                                   "Senior" = "SE",
                                    "Executive" = "EX")
                     ),
         selectInput("remote_rate", 
@@ -40,13 +40,18 @@ ui <- fluidPage(
                     ),
         selectInput("emp_residence", 
                     label = h3("Choose Residence of Employement"),
-                    choices = c(unique(cleaned_jobs$employee_residence))
+                    choices = c(unique(data$employee_residence))
                     ),
       ),
       
       mainPanel(
         tabsetPanel(
           type = "tabs",
+          tabPanel("Salary Prediction", htmlOutput("salary_pred"),
+                   tags$head(tags$style("#salary_pred{color: blue;
+                                 font-size: 25px;
+                                 }")
+                              )),
           tabPanel("Salary Distribution", plotOutput("dist_plot")),
           tabPanel("World Map", plotOutput("salary_plot")),
         ),
@@ -61,7 +66,20 @@ ui <- fluidPage(
 server <- function(input, output) {
   
   ################## Text of Salary Prediction ############################
-
+  output$salary_pred <- renderUI({
+    input_title <- input$job_title
+    input_level <- input$exp_level
+    input_remote <- input$remote_rate
+    input_resid <- input$emp_residence
+    predicted_salary <- round(salary_prediction(linear, input_level, input_title, input_resid, input_remote))
+    str0 = paste("Job Title:", input_title, "\n\n\n")
+    str1 = paste("Experience Level:", input_level, "\n\n\n")
+    str2 = paste("Country of Residence:", input_resid, "\n\n\n")
+    str3 = paste0("The Predicted Salary is $", predicted_salary, " US dollars.", "\n\n\n")
+    HTML(paste(str0, str1, str2, str3, sep = '<br/>'))
+    
+  })
+  
   
   ################## Salary Distribution, Box Plot ########################
   output$dist_plot <- renderPlot({
