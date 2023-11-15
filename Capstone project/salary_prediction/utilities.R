@@ -3,18 +3,33 @@
 library(readr)
 library(dplyr)
 library(ggplot2)
+library(stringr)
+library(tools)
+library(tidyverse)
+library(lubridate)
+library(countrycode)
 library(rnaturalearth)
 library(rnaturalearthdata)
 
-data <- read_csv("cleaned_jobs.csv")
+source("./r_scripts/fit_model.R")
+
+data <- read_csv("./cleaned_jobs.csv")
+
+data <- data %>%
+  mutate(experience_level = as.factor(experience_level),
+         job_title = as.factor(job_title),
+         employee_residence = as.factor(employee_residence),
+         remote_ratio = as.factor(remote_ratio)
+         )
 
 world_map <- function(job_name, exp_levels, remote) {
   avg_salary <- data %>%
     filter(job_title == job_name) %>%
     filter(experience_level == exp_levels) %>%
     filter(remote_ratio == remote) %>%
+    mutate(employee_residence = countrycode(employee_residence, "country.name", "iso3c")) %>%
     group_by(employee_residence) %>%
-    summarize(average_salary = mean(salary_in_usd / 1000, na.rm = TRUE))
+    summarize(average_salary = mean(salary_in_usd, na.rm = TRUE))
   
   # Get world map data
   world <- ne_countries(scale = "medium", returnclass = "sf")
@@ -27,7 +42,7 @@ world_map <- function(job_name, exp_levels, remote) {
     scale_fill_continuous(
       low = "lightblue", high = "darkblue",
       na.value = "grey50",  # Color for countries with no data
-      name = "Average Salary in thousands"
+      name = "Average Salary"
     ) +
     labs(title = paste0("Average Salary of ", job_name) ) +
     theme_void()
@@ -35,6 +50,22 @@ world_map <- function(job_name, exp_levels, remote) {
 
 salary_dist_plot <- function(data) {
   ggplot(data, aes(x = salary_in_usd)) + 
-    geom_histogram(binwidth = 5000, fill = "blue", color = "black") + 
+    geom_histogram(binwidth = 5000, fill = "lightblue", color = "black") + 
     labs(title = "Salary Distribution", x = "Salary in USD", y = "Frequency")
 }
+
+linear_model <- function(df) {
+  lm_model <- glm(salary_in_usd ~ ., data = df)
+  return(lm_model)
+}
+
+salary_prediction <- function(model, level, title, residence, ratio){
+  pre_new <- predict(model, data.frame(experience_level = level, job_title = title, employee_residence = residence, remote_ratio = ratio))
+  return(pre_new)
+}
+
+############ fit model #####################
+linear <- linear_model(data)
+
+
+
