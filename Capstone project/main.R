@@ -80,6 +80,8 @@ linear <- linear_model(cleaned_jobs)
 #' 4. Random Forest / Gradient Boosting -> more robust to imbalanced data
 #' 5. Evaluation Metric: 
 #' 
+#' Q: Countries in my data are: xxxx. How to visualize the difference of salaries on country (histogram)
+#' 
 #' 
 #' Salary Prediction: (record linkage package)
 #' If range is the outcome, just pick the middle point -- 
