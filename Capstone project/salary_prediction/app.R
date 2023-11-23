@@ -57,6 +57,7 @@ ui <- fluidPage(
                                  font-size: 25px;
                                  }")
                               )),
+          tabPanel("Plots", plotOutput("residence_plot")),
           tabPanel("Salary Distribution", plotOutput("dist_plot")),
           tabPanel("World Map", plotOutput("salary_plot")),
         ),
@@ -101,7 +102,9 @@ server <- function(input, output) {
   })
     
   ################## Boxplot ############################################
-  
+  output$residence_plot <- renderPlot({
+    box_plot(data, "employee_residence")
+  })
 }
 
 # Run the application 
