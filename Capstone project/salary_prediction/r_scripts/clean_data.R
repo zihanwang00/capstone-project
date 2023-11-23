@@ -20,6 +20,10 @@ clean_data <- function(jobs_df) {
     mutate(count = n()) %>%
     filter(count > 10) %>%
     ungroup() %>%
+    group_by(employee_residence) %>%
+    mutate(count = n()) %>%
+    filter(count > 5) %>%
+    ungroup() %>%
     mutate(
       employee_residence = countrycode(employee_residence, "iso2c", "country.name"),
       experience_level = as.factor(experience_level),
@@ -35,7 +39,6 @@ clean_data <- function(jobs_df) {
            work_year, 
            salary_currency)
   
-      
   return(cleaned_df)
 }
 
