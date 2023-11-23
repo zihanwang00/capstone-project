@@ -5,6 +5,7 @@ library(tidyverse)
 library(lubridate)
 library(countrycode)
 
+
 setwd("~/Documents/GitHub/capstone-project/Capstone project")
 
 source("./salary_prediction/r_scripts/clean_data.R")
