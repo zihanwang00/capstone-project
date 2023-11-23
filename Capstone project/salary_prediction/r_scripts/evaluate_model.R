@@ -44,6 +44,7 @@ best_rf$RMSE
 best_gb$RMSE
 
 rf_model$finalModel
+gb_model$finalModel
 
 rf_predictions <- predict(best_model, test_data)
 rf_rmse_test <- sqrt(mean((rf_predictions - test_data$salary_in_usd)^2))
