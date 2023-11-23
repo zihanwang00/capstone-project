@@ -7,8 +7,13 @@
 #    http://shiny.rstudio.com/
 #
 
+
+# Salary Prediction: A 'Predict' button that, when clicked, displays the estimated salary based on the input.
+# Graphs and charts showing salary distributions across different industries, job titles, experience levels, and locations.
+
+#' compare salaries across different job titles, industries, or locations.
+#' Select Factor to compare --> boxplots / histograms of average salary
 library(shiny)
-# source("main.R")
 source("utilities.R")
 # Define UI for application that draws a histogram
 ui <- fluidPage(
