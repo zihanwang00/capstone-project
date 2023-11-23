@@ -7,7 +7,7 @@ salary_plot <- function(data) {
 }
 
 quantile_plot <- function(data){  
-  ggplot(data, aes(sample = salary_in_usd)) + 
+  ggplot(cleaned_jobs, aes(sample = salary_in_usd)) + 
     stat_qq() + 
     stat_qq_line() + 
     ggtitle("Normal Q-Q Plot of Salary") +
@@ -15,19 +15,38 @@ quantile_plot <- function(data){
     ylab("Sample Quantiles")
 }
 
-box_plot <- function(data){
-  ggplot(data, aes(y = salary_in_usd)) + 
-    geom_boxplot(fill = "lightblue", colour = "darkblue") + 
-    labs(title = "Boxplot of Salaries", y = "Salary in USD")
+box_plot <- function(data, column){
+  ggplot(cleaned_jobs, aes(x = employee_residence, y = salary_in_usd)) +
+    geom_boxplot(color="darkblue", fill="lightblue", alpha=0.3) +
+    theme_bw() + 
+    theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+    labs(title = "Salary Distribution by Location", 
+         x = "Location", 
+         y = "Salary in USD") 
+  
 }
 
 
 plot_histograms <- function(data, column) {
-  ggplot(cleaned_jobs, aes(x = !!as.symbol(column), y = salary_in_usd, fill = !!as.symbol(column))) + 
-    geom_boxplot() + 
+  ggplot(data, aes(x = !!as.symbol(column), y = salary_in_usd, fill = !!as.symbol(column))) + 
+    geom_histogram() + 
     theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-    labs(title = "Salary by Job Title", 
+    labs(title = paste0("Salary Distribution by ", column), 
          x = column, 
          y = "Salary in USD")
   
 }
+
+ggplot(cleaned_jobs, aes(x = !!as.symbol(column), y = salary_in_usd, fill = !!as.symbol(column))) + 
+  geom_histogram() + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(title = paste0("Salary Distribution by ", column), 
+       x = column, 
+       y = "Salary in USD")
+
+
+
+ggplot(cleaned_jobs, aes(x = salary_in_usd, y = remote_ratio, fill = remote_ratio)) +
+  geom_boxplot() +
+  labs(title = "Salary Distribution by Remote Ratio", x = "Salary in USD", y = "Count")
+
