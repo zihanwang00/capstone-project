@@ -73,7 +73,6 @@ SE,Data Architect,280100,United States,100
 SE,Data Architect,168100,United States,100
 SE,Data Engineer,193500,United States,100
 SE,Data Engineer,139000,United States,100
-MI,Data Scientist,65062,Hong Kong SAR China,0
 SE,Machine Learning Engineer,150000,Portugal,100
 MI,Machine Learning Engineer,69751,India,100
 EN,AI Programmer,319500,India,50
@@ -107,7 +106,6 @@ SE,Data Engineer,133800,United States,0
 SE,Research Engineer,203000,United States,0
 SE,Research Engineer,133000,United States,0
 EN,Research Scientist,220000,United States,50
-EN,Machine Learning Engineer,61511.168000000005,Switzerland,100
 SE,Data Scientist,150000,United States,0
 SE,Data Scientist,120000,United States,0
 SE,Analytics Engineer,289800,United States,0
@@ -168,8 +166,6 @@ SE,Data Engineer,145000,United States,0
 SE,Data Engineer,120000,United States,0
 SE,Research Scientist,222200,United States,0
 SE,Research Scientist,136000,United States,0
-SE,Data Analyst,54685,Central African Republic,100
-SE,Data Analyst,42533,Central African Republic,100
 SE,Data Engineer,241000,United States,0
 SE,Data Engineer,155000,United States,0
 SE,Data Engineer,220000,United States,100
@@ -210,7 +206,6 @@ SE,Data Analyst,120000,United States,100
 SE,Data Analyst,75000,United States,100
 EN,Data Engineer,17022,India,100
 SE,Data Scientist,68318,Australia,100
-MI,AI Programmer,75020,Finland,0
 SE,Data Analyst,140000,United States,0
 SE,Data Analyst,120000,United States,0
 SE,Data Engineer,128000,United States,0
@@ -481,8 +476,6 @@ SE,Data Scientist,170730,United States,0
 SE,Data Engineer,128000,United States,0
 SE,Data Engineer,81500,United States,0
 EN,Data Analyst,21461,Spain,0
-SE,AI Programmer,108000,Ukraine,0
-SE,AI Programmer,60000,Ukraine,0
 MI,Machine Learning Engineer,134000,United States,100
 MI,Machine Learning Engineer,124000,United States,100
 SE,Data Engineer,171250,United States,0
@@ -516,7 +509,6 @@ MI,Data Architect,106500,United States,0
 SE,Research Scientist,250000,United States,0
 SE,Research Scientist,200000,United States,0
 MI,Machine Learning Engineer,135000,United States,50
-SE,AI Programmer,423834,Israel,0
 SE,Machine Learning Engineer,216000,United States,100
 SE,Machine Learning Engineer,184000,United States,100
 SE,Data Engineer,180000,United States,100
@@ -578,7 +570,6 @@ SE,Data Engineer,150000,United States,0
 SE,Data Engineer,111000,United States,0
 EX,Data Engineer,265000,United States,0
 EX,Data Engineer,235000,United States,0
-EN,Data Scientist,121093,Switzerland,50
 MI,Data Scientist,80018.04800000001,Germany,100
 SE,Data Engineer,160000,United States,100
 SE,Data Engineer,130000,United States,100
@@ -664,8 +655,6 @@ MI,Data Analyst,206000,United States,0
 MI,Data Analyst,130000,United States,0
 SE,Data Architect,138000,United Kingdom,100
 SE,Data Architect,92000,United Kingdom,100
-SE,Data Manager,65000,Colombia,0
-SE,Data Manager,48000,Colombia,0
 SE,Data Analyst,110000,United States,100
 SE,Data Analyst,75000,United States,100
 SE,Analytics Engineer,130000,United States,0
@@ -719,12 +708,10 @@ MI,Machine Learning Engineer,160000,United States,0
 MI,Machine Learning Engineer,147000,United States,0
 SE,Data Architect,149040,United States,100
 SE,Data Architect,113900,United States,100
-MI,Data Engineer,75020,Singapore,100
 SE,Data Analyst,180180,United States,0
 SE,Data Analyst,106020,United States,0
 MI,Data Scientist,17022,India,100
 EN,AI Programmer,70000,India,0
-EN,AI Programmer,80000,Sweden,50
 MI,Data Analyst,18238,India,50
 MI,Machine Learning Engineer,250000,United States,0
 MI,Machine Learning Engineer,150000,United States,0
@@ -754,8 +741,6 @@ SE,Data Engineer,276000,United States,100
 SE,Data Engineer,178500,United States,100
 MI,Data Scientist,59020,Spain,0
 MI,Data Scientist,48289,Spain,0
-MI,Data Engineer,75116,Slovenia,100
-MI,Data Engineer,48289,Slovenia,100
 SE,Machine Learning Engineer,195652,United Kingdom,0
 SE,Machine Learning Engineer,101228,United Kingdom,0
 SE,Data Engineer,136956,United Kingdom,0
@@ -843,7 +828,6 @@ SE,Data Analyst,185900,United States,0
 SE,Data Analyst,121700,United States,0
 SE,Data Analyst,153600,United States,0
 SE,Data Analyst,106800,United States,0
-EN,Data Analyst,100000,Uzbekistan,100
 SE,Machine Learning Engineer,247500,United States,0
 SE,Machine Learning Engineer,172200,United States,0
 EX,Data Engineer,310000,United States,100
@@ -958,7 +942,6 @@ EN,Data Analyst,30000,India,50
 MI,Research Scientist,185000,United States,0
 MI,Research Scientist,125000,United States,0
 MI,Data Analyst,10106.432,Brazil,100
-EX,Data Scientist,112890,Uzbekistan,0
 SE,Data Analyst,175000,United States,100
 SE,Data Analyst,130000,United States,100
 SE,Data Analyst,122000,United States,100
@@ -982,7 +965,6 @@ SE,Data Analyst,121700,United States,0
 SE,Machine Learning Engineer,204500,United States,0
 SE,Machine Learning Engineer,142200,United States,0
 MI,Data Scientist,40000,France,50
-SE,Data Scientist,29453,Thailand,50
 SE,Data Analyst,180180,United States,0
 SE,Data Analyst,106020,United States,0
 SE,Data Scientist,136000,United States,100
@@ -1100,7 +1082,6 @@ SE,Data Engineer,137500,United States,100
 SE,Data Engineer,81500,United States,100
 SE,Machine Learning Engineer,323300,United States,0
 SE,Machine Learning Engineer,184700,United States,0
-MI,AI Programmer,33451.649999999994,Ghana,0
 SE,Machine Learning Engineer,186000,United States,100
 SE,Machine Learning Engineer,153088,United States,100
 MI,Data Engineer,190000,United States,100
@@ -1145,8 +1126,6 @@ MI,Data Engineer,140000,United States,100
 MI,Data Engineer,120000,United States,100
 SE,Data Engineer,259000,United States,100
 SE,Data Engineer,146000,United States,100
-MI,Data Analyst,109371,Croatia,0
-MI,Data Analyst,72914,Croatia,0
 EN,Data Scientist,19522,Brazil,100
 SE,Data Scientist,247500,United States,0
 SE,Data Scientist,172200,United States,0
@@ -1205,7 +1184,6 @@ SE,Data Engineer,130000,United States,0
 SE,Data Analyst,55800,Spain,100
 SE,Data Analyst,51508,Spain,100
 EN,Data Analyst,60000,United States,100
-EN,Data Analyst,50000,Kuwait,50
 SE,Data Engineer,226700,United States,0
 SE,Data Engineer,133300,United States,0
 SE,Data Engineer,252000,United States,0
@@ -1238,7 +1216,6 @@ SE,Data Engineer,124740,United States,0
 SE,Data Engineer,65488,United States,0
 SE,Data Engineer,213580,United States,100
 SE,Data Engineer,163625,United States,100
-EN,Data Engineer,12000,Vietnam,0
 SE,Machine Learning Engineer,399375,United States,100
 SE,Data Engineer,101943,Ireland,100
 MI,Data Analyst,16414,India,100
@@ -1393,7 +1370,6 @@ SE,Data Manager,199000,United States,0
 SE,Data Manager,112000,United States,0
 SE,Data Scientist,105000,United States,0
 SE,Data Scientist,70000,United States,0
-EN,Business Intelligence Engineer,130000,Sweden,100
 SE,Data Analyst,180180,United States,0
 SE,Data Analyst,106020,United States,0
 EN,Data Engineer,160000,United States,0
@@ -1425,8 +1401,6 @@ SE,Data Engineer,170000,United States,0
 MI,Data Analyst,103200,United States,0
 MI,Data Analyst,61200,United States,0
 MI,Data Scientist,165075,United States,100
-EN,Data Engineer,75413.5776,Singapore,50
-SE,Data Scientist,63312,Cyprus,50
 SE,Data Scientist,237000,United States,100
 SE,Data Scientist,145000,United States,100
 SE,Data Scientist,240000,United States,100
@@ -1466,7 +1440,6 @@ EN,Data Scientist,74540,United States,0
 MI,Data Analyst,109000,United States,0
 MI,Data Analyst,79000,United States,0
 SE,Machine Learning Engineer,91449.664,France,50
-MI,Machine Learning Engineer,50000,Armenia,0
 SE,Data Scientist,275300,United States,100
 SE,Data Scientist,183500,United States,100
 SE,Data Scientist,275300,United States,100
@@ -1509,7 +1482,6 @@ MI,Data Analyst,80000,United States,0
 SE,Machine Learning Engineer,200000,United States,0
 SE,Machine Learning Engineer,135000,United States,0
 EN,Data Analyst,51120,United States,50
-EN,AI Programmer,120000,Bosnia & Herzegovina,50
 SE,Data Engineer,130000,United States,0
 SE,Data Engineer,75000,United States,0
 SE,Data Engineer,252000,United States,0
@@ -1527,14 +1499,10 @@ MI,Data Engineer,130000,United States,0
 SE,Data Scientist,225000,United States,0
 SE,Data Scientist,156400,United States,0
 SE,Computer Vision Engineer,200000,United States,100
-MI,Data Scientist,80000,Kenya,100
 EN,Data Analyst,12877,Greece,50
-EN,AI Programmer,6858.752,North Macedonia,0
 MI,Data Analyst,17509,India,50
 SE,Data Scientist,257000,United States,0
 SE,Data Scientist,134000,United States,0
-SE,Data Scientist,77262,Latvia,0
-SE,Data Scientist,38631,Latvia,0
 SE,Data Engineer,205600,United States,0
 SE,Data Engineer,105700,United States,0
 SE,Business Intelligence Engineer,140000,United States,100
@@ -1543,7 +1511,6 @@ SE,Data Scientist,299500,United States,0
 SE,Data Scientist,245100,United States,0
 SE,Research Scientist,210000,United States,0
 SE,Research Scientist,151800,United States,0
-MI,Data Scientist,53654,Romania,50
 SE,Data Analyst,51508,Spain,0
 SE,Data Analyst,40777,Spain,0
 SE,Data Analyst,51508,Spain,0
@@ -1576,7 +1543,6 @@ SE,Data Scientist,220000,United States,0
 SE,Data Scientist,146000,United States,0
 SE,Data Engineer,300000,United States,0
 SE,Data Engineer,130000,United States,0
-MI,Data Scientist,24740,Thailand,50
 MI,Computer Vision Engineer,17295.936,India,100
 SE,Data Scientist,145000,United States,0
 SE,Data Scientist,128000,United States,0
@@ -1584,8 +1550,6 @@ SE,Data Scientist,182000,United States,0
 SE,Data Scientist,140000,United States,0
 SE,Data Engineer,122000,United States,0
 SE,Data Engineer,94000,United States,0
-SE,Machine Learning Engineer,77262,Latvia,0
-SE,Machine Learning Engineer,38631,Latvia,0
 EX,Data Scientist,300000,United States,0
 EX,Data Scientist,200000,United States,0
 MI,Data Analyst,135000,United States,0
@@ -1850,7 +1814,6 @@ MI,Data Engineer,127800,United States,0
 MI,Data Engineer,101175,United States,0
 EN,Data Engineer,170400,United States,0
 EN,Data Engineer,143775,United States,0
-EN,Data Scientist,26291.52,Italy,50
 SE,Data Engineer,230040,United States,100
 SE,Data Engineer,153360,United States,100
 EN,Data Engineer,90525,United States,0
@@ -1894,9 +1857,7 @@ SE,Research Scientist,195960,United States,100
 SE,Research Scientist,151230,United States,100
 MI,Data Scientist,154425,United States,0
 MI,Data Scientist,106500,United States,0
-EN,Machine Learning Engineer,10650,Morocco,50
 MI,Data Scientist,34592.96,India,100
-MI,Deep Learning Engineer,48269.12,Poland,100
 SE,Data Engineer,186375,United States,0
 SE,Data Engineer,127800,United States,0
 SE,Data Engineer,186375,United States,0
@@ -1924,7 +1885,6 @@ MI,Data Engineer,127800,United States,100
 SE,Data Scientist,202350,United States,0
 SE,Data Scientist,159750,United States,0
 MI,Data Engineer,38743.68,India,50
-SE,AI Programmer,133125,Colombia,100
 SE,Data Engineer,127800,United States,0
 SE,Data Engineer,101175,United States,0
 MI,Data Analyst,159750,United States,0
@@ -2089,8 +2049,6 @@ SE,Data Engineer,209805,United States,0
 SE,Data Engineer,105435,United States,0
 SE,Data Engineer,234300,United States,100
 SE,Data Engineer,172530,United States,100
-MI,Data Engineer,120165.248,Lithuania,0
-MI,Data Engineer,86145.664,Lithuania,0
 MI,Data Scientist,76362.368,United Kingdom,0
 MI,Data Scientist,56267.008,United Kingdom,0
 SE,Data Architect,158727.6,United States,100
@@ -2125,7 +2083,6 @@ SE,Data Scientist,117150,United States,0
 SE,Data Scientist,74550,United States,0
 SE,Machine Learning Engineer,241968,Canada,100
 SE,Machine Learning Engineer,178920,Canada,100
-EN,Computer Vision Engineer,22301.1,American Samoa,0
 MI,Data Scientist,69729.92,Germany,0
 MI,Data Scientist,66300.54400000001,Germany,0
 SE,Machine Learning Engineer,258795,United States,100
@@ -2331,7 +2288,6 @@ SE,Data Scientist,197983.5,United States,0
 SE,Data Scientist,137704.5,United States,0
 SE,Research Scientist,218325,United States,100
 SE,Research Scientist,195960,United States,100
-EN,Data Scientist,19240.192000000003,Hungary,100
 SE,Data Scientist,399375,United States,50
 SE,Data Engineer,203628,United States,0
 SE,Data Engineer,138450,United States,0
@@ -2351,9 +2307,6 @@ SE,Data Scientist,372750,United States,100
 SE,Data Scientist,143775,United States,100
 SE,Data Analyst,123469.70999999999,United States,100
 SE,Data Analyst,86974.29,United States,100
-MI,Machine Learning Engineer,113910.33600000001,Switzerland,100
-EN,Machine Learning Engineer,35145,Italy,100
-EN,Machine Learning Engineer,37723.136000000006,Italy,100
 SE,Machine Learning Engineer,214065,United States,0
 SE,Machine Learning Engineer,126735,United States,0
 SE,Data Engineer,186375,United States,100
@@ -2399,7 +2352,6 @@ SE,Data Analyst,135255,United States,100
 SE,Data Analyst,117150,United States,100
 SE,Data Architect,223650,United States,100
 SE,Data Architect,144840,United States,100
-SE,Data Engineer,13717.504,Slovakia,100
 SE,Data Engineer,181050,United States,100
 SE,Data Engineer,149100,United States,100
 SE,Data Engineer,263587.5,United States,0
@@ -2653,7 +2605,6 @@ SE,Business Intelligence Engineer,213000,Nigeria,100
 SE,Data Scientist,211338.59999999998,United States,0
 SE,Data Scientist,153360,United States,0
 SE,Machine Learning Engineer,75446.27200000001,Portugal,100
-MI,Deep Learning Engineer,5583.616,Czechia,100
 MI,Research Scientist,137175.04,Germany,0
 MI,Research Scientist,91449.664,Germany,0
 SE,Data Engineer,213000,United States,100
@@ -2671,14 +2622,12 @@ EN,Data Analyst,47326.89024,Australia,50
 MI,Data Analyst,143775,United States,100
 SE,Data Engineer,190422,United States,100
 SE,Data Engineer,140686.5,United States,100
-EN,Data Analyst,21300,Costa Rica,50
 SE,Machine Learning Engineer,149100,Canada,0
 SE,Machine Learning Engineer,117150,Canada,0
 SE,Data Engineer,170400,United States,100
 SE,Data Engineer,90525,United States,100
 EX,Data Engineer,199368,United States,100
 EX,Data Engineer,123646.5,United States,100
-MI,Data Scientist,10650,Turkey,0
 SE,Data Engineer,213000,United States,100
 SE,Data Engineer,154425,United States,100
 SE,Data Engineer,244947.87,United States,0
@@ -2713,7 +2662,6 @@ SE,Data Scientist,232170,United States,0
 SE,Data Scientist,154744.5,United States,0
 SE,Machine Learning Engineer,208101,United States,100
 SE,Machine Learning Engineer,139834.5,United States,100
-EN,Data Specialist,111825,Chile,100
 SE,Data Scientist,203920.875,United States,100
 SE,Data Scientist,150724.125,United States,100
 SE,Data Scientist,220455,United States,100
@@ -2728,8 +2676,6 @@ SE,Data Scientist,203920.875,United States,100
 SE,Data Scientist,150724.125,United States,100
 SE,Data Scientist,203920.875,United States,100
 SE,Data Scientist,150724.125,United States,100
-SE,Machine Learning Engineer,213000,Puerto Rico,100
-SE,Machine Learning Engineer,143775,Puerto Rico,100
 SE,Data Scientist,220455,United States,100
 SE,Data Scientist,162945,United States,100
 SE,Data Scientist,203920.875,United States,100
@@ -2771,7 +2717,6 @@ SE,Data Engineer,170400,United States,100
 SE,Data Engineer,90525,United States,100
 SE,Data Engineer,190422,United States,100
 SE,Data Engineer,140686.5,United States,100
-SE,Machine Learning Engineer,68587.52,Finland,50
 EN,Data Analyst,53250,India,100
 SE,Data Engineer,149100,United States,100
 SE,Data Engineer,111825,United States,100
@@ -2799,7 +2744,6 @@ SE,Analytics Engineer,130462.5,United States,100
 SE,Analytics Engineer,106500,United States,100
 EX,Data Engineer,316837.5,United States,100
 EX,Data Engineer,276900,United States,100
-EN,Machine Learning Engineer,16725.824999999997,Thailand,100
 SE,Data Engineer,205545,Spain,100
 EN,Data Scientist,99045,United States,0
 EN,Data Scientist,77745,United States,0
@@ -2894,13 +2838,11 @@ SE,Data Scientist,203920.875,United States,100
 SE,Data Scientist,150724.125,United States,100
 SE,Data Specialist,101175,United States,100
 SE,Data Specialist,74550,United States,100
-MI,Machine Learning Engineer,79875,Bolivia,100
 MI,Data Analyst,120345,United States,0
 SE,Data Scientist,181050,United States,100
 SE,Data Scientist,138450,United States,100
 MI,Data Analyst,120345,United States,100
 MI,Data Analyst,149100,United States,100
-SE,Data Analyst,55752.75,Philippines,100
 MI,Business Intelligence Engineer,58064.384000000005,Australia,100
 SE,Data Scientist,186375,United States,0
 SE,Data Scientist,149100,United States,0
@@ -2966,8 +2908,6 @@ MI,Data Engineer,107174.528,United Kingdom,0
 MI,Data Engineer,80381.44,United Kingdom,0
 SE,Data Analyst,124605,United States,100
 SE,Data Analyst,105914.25,United States,100
-SE,Data Engineer,213000,Puerto Rico,100
-SE,Data Engineer,143775,Puerto Rico,100
 SE,Machine Learning Engineer,206503.5,United States,0
 SE,Machine Learning Engineer,137704.5,United States,0
 EN,Machine Learning Engineer,60286.08,United Kingdom,100
@@ -2990,7 +2930,6 @@ SE,Data Engineer,108736.5,United States,0
 SE,Data Architect,150484.5,United States,0
 SE,Data Architect,108736.5,United States,0
 EN,Data Analyst,53250,Argentina,100
-EN,Data Scientist,91449.664,Belgium,100
 MI,Data Scientist,66983.808,United Kingdom,50
 SE,Data Architect,266250,United States,0
 SE,Data Architect,67095,United States,0
@@ -3030,7 +2969,6 @@ SE,Data Engineer,106500,United States,100
 EN,Data Analyst,58575,United States,100
 MI,Data Analyst,138450,United States,100
 SE,Machine Learning Engineer,83905.47200000001,France,100
-EN,Data Scientist,56584.704000000005,Belgium,50
 SE,Data Engineer,220134.435,United States,0
 SE,Data Engineer,105541.5,United States,0
 MI,Analytics Engineer,213000,United States,0
@@ -3079,8 +3017,6 @@ EN,Data Engineer,15485.926030848,India,100
 SE,Data Scientist,170400,United States,0
 SE,Data Scientist,127054.5,United States,0
 SE,Data Analyst,106500,United States,100
-MI,Data Scientist,26625,Turkey,50
-MI,Data Analyst,70999.61600000001,Singapore,50
 MI,AI Programmer,213000,United States,100
 EN,Machine Learning Engineer,191700,United States,100
 MI,Data Scientist,162945,United States,100
@@ -3088,13 +3024,11 @@ SE,Data Engineer,223650,United States,100
 SE,Data Engineer,106500,United States,100
 SE,Data Analyst,159829.875,United States,100
 SE,Data Analyst,118135.125,United States,100
-MI,Machine Learning Engineer,24282,Egypt,100
 SE,Data Scientist,170400,United States,100
 SE,Data Scientist,97980,United States,100
 SE,Machine Learning Engineer,216088.5,United States,100
 SE,Machine Learning Engineer,139834.5,United States,100
 EN,Data Analyst,26177.906087424002,Portugal,100
-EN,Data Analyst,15975,Indonesia,0
 SE,Data Engineer,186375,United States,100
 SE,Data Engineer,143775,United States,100
 SE,Data Scientist,145537.40800000002,Australia,100
@@ -3177,7 +3111,6 @@ MI,Data Engineer,68587.52,Greece,100
 MI,Data Engineer,51440.64000000001,Greece,100
 MI,Data Engineer,80381.44,United Kingdom,100
 MI,Data Engineer,60286.08,United Kingdom,100
-MI,Machine Learning Engineer,57502.14912,Italy,50
 SE,Data Scientist,63900,Argentina,100
 MI,Data Engineer,88288.5,United States,0
 MI,Data Engineer,68053.5,United States,0
@@ -3361,8 +3294,6 @@ SE,Machine Learning Engineer,234300,United States,100
 SE,Machine Learning Engineer,127800,United States,100
 MI,Data Scientist,213000,United States,100
 MI,Data Scientist,127800,United States,100
-SE,Machine Learning Engineer,127800,United Arab Emirates,100
-SE,Machine Learning Engineer,69225,United Arab Emirates,100
 EX,Data Engineer,345060,United States,100
 EX,Data Engineer,230040,United States,100
 SE,Data Engineer,223650,United States,100
@@ -3379,7 +3310,6 @@ MI,Data Analyst,19371.84,India,100
 MI,Data Scientist,33209.024000000005,India,100
 MI,Machine Learning Engineer,60585.280000000006,Portugal,50
 EN,Data Scientist,19371.84,India,100
-MI,Machine Learning Engineer,79875,Bolivia,100
 MI,Data Scientist,167205,United States,100
 MI,Data Analyst,75216.70400000001,Canada,50
 EN,Data Engineer,69225,United States,100
@@ -3402,10 +3332,7 @@ SE,Data Scientist,175725,United States,100
 MI,Machine Learning Engineer,162945,United States,50
 SE,Data Scientist,106500,Brazil,100
 SE,Machine Learning Engineer,83573.63200000001,Canada,100
-MI,Data Scientist,36566.592000000004,Poland,100
 MI,Data Analyst,79875,Canada,100
-MI,Data Analyst,22575.403529999996,Honduras,0
-MI,Research Scientist,78052.73494499999,Czechia,50
 EN,Data Engineer,60356.8,Pakistan,100
 MI,Research Scientist,67444.032,Austria,0
 SE,Data Scientist,162412.5,United States,100
@@ -3417,10 +3344,8 @@ SE,Data Scientist,267613.19999999995,United States,0
 MI,Data Analyst,150532.425,United States,100
 EN,Data Scientist,89204.4,United States,100
 SE,Data Scientist,404700,United States,100
-MI,Data Scientist,130997.376,Switzerland,0
 SE,Data Scientist,188505,United States,100
 MI,Data Engineer,70873.40800000001,France,100
-MI,Data Scientist,51120,Russia,100
 EN,Data Analyst,21300,Pakistan,0
 SE,Data Scientist,245312.09999999995,United States,0
 MI,Machine Learning Engineer,87118.05312,Japan,50
@@ -3431,7 +3356,6 @@ EN,Data Scientist,111505.5,United States,0
 SE,Research Scientist,153360,United States,50
 SE,Data Scientist,169182.912,Germany,100
 SE,Computer Vision Engineer,26761.32,Brazil,100
-MI,Machine Learning Engineer,42818.111999999994,Vietnam,100
 EN,Data Analyst,106500,United States,50
 MI,Data Scientist,91992.03749999999,United States,100
 EN,Data Scientist,55905.367679999996,France,50
@@ -3448,9 +3372,7 @@ EN,Data Analyst,55752.75,United States,100
 SE,Data Engineer,223011,United States,100
 MI,Business Intelligence Engineer,66903.29999999999,Spain,50
 MI,Data Engineer,223011,United States,100
-EN,Machine Learning Engineer,111505.5,Iraq,50
 MI,Data Engineer,111505.5,United States,100
-SE,Machine Learning Engineer,93176.36352,Belgium,50
 MI,Data Engineer,68062.096747008,Germany,100
 MI,Research Scientist,70547.78592,France,50
 MI,Data Engineer,92933.13024,United Kingdom,100
@@ -3463,7 +3385,6 @@ EN,Business Intelligence Engineer,79013.91235499998,United States,100
 EX,Data Scientist,146419.67808,Germany,50
 EN,Data Scientist,71878.81248,Germany,50
 SE,Data Scientist,78534.86596300801,Greece,100
-EX,Data Scientist,94779.67499999999,Russia,0
 EN,Machine Learning Engineer,139381.87499999997,United States,100
 SE,Data Analyst,133806.59999999998,United States,100
 MI,Research Scientist,507946.57942499995,United States,0
@@ -3471,7 +3392,6 @@ MI,Data Analyst,53665.338714624006,France,50
 MI,Data Engineer,85079.05555968001,Austria,50
 SE,Data Scientist,143261.02367999998,Canada,50
 SE,Data Scientist,160567.91999999998,United States,100
-EN,Data Scientist,14941.737,Ukraine,100
 MI,Data Scientist,85327.58592,Canada,100
 MI,Data Scientist,167258.25,United States,100
 MI,Data Scientist,116263.32817949998,United States,100
@@ -3482,20 +3402,16 @@ EN,Data Analyst,66903.29999999999,United States,100
 MI,Data Scientist,55752.75,Nigeria,100
 MI,Data Scientist,61076.32704,United Kingdom,50
 MI,Machine Learning Engineer,53243.31456,Spain,100
-EX,Data Scientist,173041.33536000003,Italy,100
-MI,Data Engineer,32066.25408,Poland,100
 MI,Data Analyst,122656.04999999997,United States,100
 EN,Research Scientist,92933.13024,United Kingdom,50
 EN,Machine Learning Engineer,282192.54412499996,United States,50
 EN,Data Analyst,66553.58016,France,50
-SE,Data Analyst,89204.4,Bulgaria,100
 EN,Data Analyst,11287.701764999998,Nigeria,100
 EN,Machine Learning Engineer,155770.28435699997,United States,100
 MI,Data Engineer,156107.69999999998,United States,100
 SE,Data Analyst,89182.15776,Germany,100
 SE,Data Analyst,189559.34999999998,United States,100
 EN,Data Analyst,89204.4,United States,100
-MI,Data Scientist,51652.523276639986,Philippines,100
 MI,Business Intelligence Engineer,111505.5,United States,100
 SE,Data Scientist,59898.44736,France,50
 EX,Business Intelligence Engineer,167258.25,India,100
@@ -3514,12 +3430,10 @@ MI,Research Scientist,211074.68735999998,Canada,100
 MI,Data Analyst,58014.51552,United Kingdom,50
 MI,Data Engineer,119649.63870899999,United States,100
 MI,Data Engineer,129543.27747379201,United Kingdom,50
-MI,Business Intelligence Engineer,40830.534719999996,Hungary,50
 SE,Data Engineer,167258.25,United States,100
 MI,Computer Vision Engineer,107817.65568,Germany,100
 EN,Computer Vision Engineer,78053.84999999999,United States,100
 MI,Data Scientist,88324.75324108801,United Kingdom,100
-MI,Data Engineer,100552.18752,Singapore,50
 EN,Data Scientist,33502.00608,India,50
 SE,Data Engineer,307755.18,United States,0
 SE,Data Engineer,212208.79318199996,United States,100
@@ -3536,7 +3450,6 @@ EN,Data Analyst,6968.838868992,India,0
 SE,Data Engineer,38460.599364096,Mexico,0
 SE,Data Analyst,189559.34999999998,United States,100
 SE,Data Engineer,108421.23456,United Kingdom,50
-MI,Data Engineer,13628.946240000001,Turkey,0
 EN,Data Scientist,41262.94944,France,50
 MI,Data Engineer,81316.48896,United Kingdom,50
 EN,Data Analyst,102718.0860615,United States,100
@@ -3546,7 +3459,6 @@ MI,Data Analyst,89204.4,United States,100
 SE,Data Scientist,116764.36128000001,Canada,100
 EN,Data Engineer,24364.99296,India,50
 EN,Research Scientist,47408.34741299999,Netherlands,50
-MI,Data Scientist,129808.57029749999,United Arab Emirates,0
 MI,Research Scientist,71855.1648,Canada,100
 SE,Machine Learning Engineer,293480.24588999996,Japan,0
 MI,Data Scientist,122656.04999999997,United States,0
@@ -3559,10 +3471,8 @@ MI,Data Engineer,122656.04999999997,United States,100
 MI,Data Scientist,91624.39285708801,Germany,0
 EN,Data Engineer,80841.4875,United States,100
 SE,Machine Learning Engineer,206285.175,United States,50
-EN,Research Scientist,111505.5,Jersey,0
 MI,Data Engineer,124886.15999999997,United States,100
 SE,Machine Learning Engineer,169315.526475,United States,50
-SE,Data Scientist,22714.159679999997,Turkey,50
 SE,AI Programmer,61328.02499999999,Spain,100
 EN,Data Scientist,64673.18999999999,United States,50
 EN,Data Scientist,111505.5,United States,100
@@ -3571,11 +3481,8 @@ EN,Machine Learning Engineer,94779.67499999999,Netherlands,100
 EN,Data Scientist,86520.10464,Germany,0
 EN,Data Analyst,81271.45270799998,United States,100
 EN,Data Engineer,73209.83904,Germany,50
-MI,Data Engineer,31548.257279999998,Turkey,100
 MI,Data Engineer,124635.27262499998,United States,0
 MI,Data Engineer,103867.37324999999,United States,0
-SE,Data Engineer,178408.8,Puerto Rico,50
-MI,Data Scientist,28751.07456,Serbia,100
 SE,Machine Learning Engineer,74619.6912,India,0
 MI,Data Scientist,19035.25632,India,100
 SE,Data Analyst,71878.81248,Germany,50
@@ -3583,30 +3490,23 @@ SE,Data Scientist,214466.33353499995,United States,100
 EX,Data Scientist,159729.94368,Germany,0
 EN,Business Intelligence Engineer,18274.02624,India,100
 SE,Data Analyst,80836.77888,Canada,100
-MI,Data Scientist,41013.08580096,Hungary,50
 SE,Data Scientist,150532.425,United States,0
 EN,Machine Learning Engineer,27952.683839999998,Germany,50
 SE,Data Scientist,60914.171519999996,India,50
 SE,Machine Learning Engineer,27411.03936,India,100
-EN,Business Intelligence Engineer,10338.789959999998,Kenya,100
 MI,Data Scientist,163913.085,United States,50
 SE,Research Scientist,108230.92704,Canada,50
 SE,Data Scientist,194019.56999999998,United States,100
 MI,Data Analyst,152383.97382749998,United States,100
-EN,Machine Learning Engineer,24357.261419999995,Colombia,50
-SE,Data Engineer,141096.27206249998,New Zealand,50
 EN,Data Scientist,58901.14947225601,France,0
 MI,Data Scientist,46460.073494016004,India,0
 EX,Data Scientist,78533.94528,France,100
-SE,Data Analyst,55752.75,Vietnam,100
 EN,Data Scientist,45811.62257817601,France,0
 MI,Data Analyst,98203.00535549999,United States,100
-MI,Data Engineer,29283.7104,Romania,0
 MI,Data Scientist,102173.74272,Germany,50
 MI,Business Intelligence Engineer,25461.79488,India,0
 MI,Data Scientist,6395.00832,India,100
 EN,Machine Learning Engineer,90319.455,United States,50
-MI,Data Scientist,45085.99104,Chile,100
 EN,Data Scientist,100354.95,United States,100
 MI,Data Scientist,69216.75936,Germany,50
 SE,Machine Learning Engineer,217435.72499999998,United States,100
@@ -3616,24 +3516,18 @@ SE,Machine Learning Engineer,250887.37499999997,United States,100
 MI,Data Scientist,63348.756480000004,United Kingdom,50
 MI,Data Scientist,38070.51264,India,0
 MI,Data Scientist,131654.51712,United Kingdom,50
-MI,Machine Learning Engineer,52471.94976,Poland,100
 MI,Data Analyst,9030.161412,Pakistan,50
 EN,Data Engineer,47846.495983104,Japan,100
-SE,Business Intelligence Engineer,130891.825838592,Poland,100
-MI,Machine Learning Engineer,99831.49632,Belgium,100
 EN,Data Scientist,6549.928100352001,India,50
 MI,Data Engineer,63211.129883999994,Portugal,100
 MI,Data Scientist,99831.49632,Germany,50
 MI,Data Analyst,6968.838868992,India,100
 SE,Data Engineer,54973.717553664006,Greece,50
 MI,Business Intelligence Engineer,110619.47729699999,United States,0
-MI,Data Engineer,74346.05376,Hong Kong SAR China,50
 MI,Research Scientist,63891.52704,France,50
-MI,Machine Learning Engineer,27952.683839999998,Slovenia,50
 SE,Data Analyst,133806.59999999998,United States,0
 EX,Data Scientist,366850.30736249994,United States,100
 SE,Machine Learning Engineer,223011,United States,100
-EN,AI Programmer,52674.872979456006,Denmark,50
 MI,Data Scientist,178408.8,United States,100
 SE,Research Scientist,55752.75,France,100
 MI,Data Scientist,45256.02912,Greece,100
@@ -3649,13 +3543,10 @@ SE,Data Analyst,156107.69999999998,United States,100
 SE,Data Scientist,135452.42117999998,United States,50
 SE,Data Scientist,98800.00704,Canada,100
 SE,Data Analyst,69699.84767999999,United Kingdom,50
-SE,Data Engineer,86520.10464,Romania,50
 MI,Machine Learning Engineer,82514.06999999999,Japan,50
 SE,Data Scientist,169488.36,United States,100
-MI,Business Intelligence Engineer,20070.989999999998,Moldova,0
 MI,Data Scientist,144957.15,United States,50
 SE,Computer Vision Engineer,21290.794560000002,Brazil,0
-EN,Data Analyst,66553.58016,Luxembourg,100
 SE,Data Scientist,195669.91296,Germany,100
 SE,Data Scientist,170159.25882009603,Germany,100
 MI,Data Scientist,44503.24373913601,Spain,100
@@ -3674,11 +3565,8 @@ SE,Data Scientist,214692.08757029998,United States,100
 MI,Data Scientist,133194.880827,United States,100
 MI,Data Scientist,156165.35391877498,United States,100
 MI,Data Engineer,147643.13908619998,Spain,100
-SE,Machine Learning Engineer,52355.812174848004,Croatia,100
 SE,Data Scientist,187329.24,Japan,0
-MI,Data Scientist,134069.95872,Singapore,100
 MI,Machine Learning Engineer,471668.2649999999,United States,50
-MI,Data Engineer,31945.76352,Malta,50
 SE,Data Specialist,183984.07499999998,United States,100
 SE,Data Scientist,465053.3127179999,United States,100
 MI,Data Scientist,168373.305,United States,100
