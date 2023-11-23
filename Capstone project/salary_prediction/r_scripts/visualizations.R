@@ -16,14 +16,13 @@ quantile_plot <- function(data){
 }
 
 box_plot <- function(data, column){
-  ggplot(cleaned_jobs, aes(x = employee_residence, y = salary_in_usd)) +
+  ggplot(data, aes(x = !!as.symbol(column), y = salary_in_usd)) +
     geom_boxplot(color="darkblue", fill="lightblue", alpha=0.3) +
     theme_bw() + 
     theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-    labs(title = "Salary Distribution by Location", 
-         x = "Location", 
+    labs(title = paste0("Salary Distribution by ", column), 
+         x = column, 
          y = "Salary in USD") 
-  
 }
 
 
