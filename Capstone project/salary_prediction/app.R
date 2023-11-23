@@ -86,7 +86,7 @@ server <- function(input, output) {
   })
   
   
-  ################## Salary Distribution, Box Plot ########################
+  ################## Salary Distribution, Histogram ########################
   output$dist_plot <- renderPlot({
     data %>%
       filter(job_title == input$job_title) %>%
@@ -96,9 +96,12 @@ server <- function(input, output) {
   })  
   
   ################## World Map ############################################
-    output$salary_plot <- renderPlot({
-      world_map(input$job_title, input$exp_level, input$remote_rate)
-    })
+  output$salary_plot <- renderPlot({
+    world_map(input$job_title, input$exp_level, input$remote_rate)
+  })
+    
+  ################## Boxplot ############################################
+  
 }
 
 # Run the application 
