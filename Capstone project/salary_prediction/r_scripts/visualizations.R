@@ -7,7 +7,7 @@ salary_plot <- function(data) {
 }
 
 quantile_plot <- function(data){  
-  ggplot(cleaned_jobs, aes(sample = salary_in_usd)) + 
+  ggplot(cleaned_jobs, aes(sample = salary_in_usd^trans_num)) + 
     stat_qq() + 
     stat_qq_line() + 
     ggtitle("Normal Q-Q Plot of Salary") +
@@ -44,8 +44,8 @@ ggplot(cleaned_jobs, aes(x = !!as.symbol(column), y = salary_in_usd, fill = !!as
        y = "Salary in USD")
 
 
-
-ggplot(cleaned_jobs, aes(x = salary_in_usd, y = remote_ratio, fill = remote_ratio)) +
-  geom_boxplot() +
-  labs(title = "Salary Distribution by Remote Ratio", x = "Salary in USD", y = "Count")
-
+salary_dist_plot <- function(data) {
+  ggplot(data, aes(x = salary_in_usd)) + 
+    geom_histogram(binwidth = 5000, fill = "lightblue", color = "black") + 
+    labs(title = "Salary Distribution", x = "Salary in USD", y = "Frequency")
+}
