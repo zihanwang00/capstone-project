@@ -4,6 +4,7 @@ setwd("~/Documents/GitHub/capstone-project/Capstone project/salary_prediction")
 library(readr)
 library(dplyr)
 library(ggplot2)
+library(gridExtra)
 library(stringr)
 library(tools)
 library(tidyverse)
@@ -22,12 +23,12 @@ data <- data %>%
          employee_residence = as.factor(employee_residence),
          remote_ratio = as.factor(remote_ratio)
          )
-
-world_map <- function(job_name, exp_levels, remote) {
-  avg_salary <- data %>%
-    filter(job_title == job_name) %>%
-    filter(experience_level == exp_levels) %>%
-    filter(remote_ratio == remote) %>%
+######################## World Map #############################
+world_map <- function(df) {
+  avg_salary <- df %>%
+    # filter(job_title == job_name) %>%
+    # filter(experience_level == exp_levels) %>%
+    # filter(remote_ratio == remote) %>%
     mutate(employee_residence = countrycode(employee_residence, "country.name", "iso3c")) %>%
     group_by(employee_residence) %>%
     summarize(average_salary = mean(salary_in_usd, na.rm = TRUE))
@@ -49,22 +50,13 @@ world_map <- function(job_name, exp_levels, remote) {
     theme_void()
 }
 
-salary_dist_plot <- function(data) {
-  ggplot(data, aes(x = salary_in_usd)) + 
-    geom_histogram(binwidth = 5000, fill = "lightblue", color = "black") + 
-    labs(title = "Salary Distribution", x = "Salary in USD", y = "Frequency")
-}
-
-linear_model <- function(df) {
-  lm_model <- glm(salary_in_usd ~ ., data = df)
-  return(lm_model)
-}
-
+################### Salary Prediction ##########################
 salary_prediction <- function(model, level, title, residence, ratio){
   pre_new <- predict(model, data.frame(experience_level = level, job_title = title, employee_residence = residence, remote_ratio = ratio))
   return(pre_new)
 }
 
+######################## Box Plot #############################
 box_plot <- function(data, column){
   ggplot(data, aes(x = !!as.symbol(column), y = salary_in_usd)) +
     geom_boxplot(color="darkblue", fill="lightblue", alpha=0.3) +
@@ -75,8 +67,6 @@ box_plot <- function(data, column){
          y = "Salary in USD") 
 }
 
-############ fit model #####################
-linear <- linear_model(data)
 
 
 
