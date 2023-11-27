@@ -3,7 +3,6 @@ library(stringr)
 library(tools)
 library(tidyverse)
 library(lubridate)
-# library(countrycode)
 library(randomForest)
 library(caret)
 library(xgboost)
@@ -35,10 +34,21 @@ split_index <- createDataPartition(cleaned_jobs$employee_residence, p = 0.7, lis
 train_data <- cleaned_jobs[split_index, ]
 test_data <- cleaned_jobs[-split_index, ]
 
-lm_model <- linear_model(cleaned_jobs)
+lm_model <- lm(salary_in_usd ~ ., data = train_data)
 summary(lm_model)
 predictions <- predict(lm_model, test_data)
 lm_rmse <- sqrt(mean((predictions - test_data$salary_in_usd)^2))
+
+############ Box Cox Transform ###############
+source("http://www.reuningscherer.net/s&ds230/Rfuncs/regJDRS.txt")
+lm_transform <- boxCox(lm_model)
+d <- lm_transform$x[which.max(lm_transform$y)]
+
+lm_model_transform <- lm(salary_in_usd^d ~ ., data = train_data)
+summary(lm_model_transform)
+
+predictions <- predict(lm_model_transform, test_data)^(1/d)
+lm_rmse_transform <- sqrt(mean((predictions - test_data$salary_in_usd)^2))
 
 ######################### Tree Models ############################
 # train control for random forest and gradient boost
@@ -50,9 +60,8 @@ rf_model <- tree_model(cleaned_jobs, train_control, grid_rf, "rf")
 best_rf <- model_performance(rf_model)
 best_rf$RMSE
 
-final_model <- lm_model
-
-saveRDS(final_model, file = "./final_model.rds")
+saveRDS(lm_model, file = "./lm_model.rds")
+saveRDS(lm_model_transform, file = "./final_model.rds")
 
 #' Choose job name
 #' Choose job country
