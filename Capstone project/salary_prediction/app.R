@@ -18,7 +18,7 @@ source("utilities.R")
 
 ui <- fluidPage(
   # Application title
-  titlePanel("Salary Prediction"),
+  titlePanel("Data Science Jobs Salary Prediction"),
   
   # Main panel for tabset
   mainPanel(
@@ -33,7 +33,7 @@ ui <- fluidPage(
                                     choices = c(unique(data$job_title))
                         )
                  ),
-                 column(3, 
+                 column(2, 
                         selectInput("remote_rate", 
                                     label = h3("Work Model"),
                                     choices = list("On-Site" = "0",
@@ -50,9 +50,9 @@ ui <- fluidPage(
                                                    "Executive" = "EX")
                         )
                  ),
-                 column(3, 
+                 column(4, 
                         selectInput("emp_residence", 
-                                    label = h3("Employment Residence"),
+                                    label = h3("Employee Residence"),
                                     choices = c(unique(data$employee_residence))
                         )
                  )
@@ -148,30 +148,11 @@ server <- function(input, output) {
     
   })
   
-
-  
-  ################## World Map ############################################
-  output$salary_plot <- renderPlot({
-    world_map(input$job_title, input$exp_level, input$remote_rate)
-  })
-    
-  ################## Boxplots ############################################
-  output$remote_plot <- renderPlot({
-    box_plot(data, "remote_ratio", )
-  })
-  
-  output$title_plot <- renderPlot({
-    box_plot(data, "job_title")
-  })
-  
-  output$experience_plot <- renderPlot({
-    box_plot(data, "experience_level")
-  })
   
   ############### Title Combined Plot ############################################
   output$titleCombinedPlot <- renderPlot({
-    p1 <- box_plot(data , "remote_ratio", title = input$job_title2)
-    p2 <- box_plot(data, "experience_level", title = input$job_title2)
+    p1 <- box_plot(data , "remote_ratio", title = input$job_title2, name = "Remote Ratio")
+    p2 <- box_plot(data, "experience_level", title = input$job_title2, name = "Experience Level")
     p3 <- world_map(data, title = input$job_title2)
     p4 <- top_salary_plot(data, title = input$job_title2)
     
@@ -179,14 +160,14 @@ server <- function(input, output) {
     combinedPlot <- grid.arrange(p1, p2, p3, p4, ncol = 2, nrow = 2)
     print(combinedPlot)
   },
-  width = 900,
+  width = 980,
   height = 600
   )
   
   ############### Level Combined Plot ####################################
   output$levelCombinedPlot <- renderPlot({
-    p1 <- box_plot(data , "remote_ratio", level = input$level2)
-    p2 <- box_plot(data, "job_title", level = input$level2)
+    p1 <- box_plot(data , "remote_ratio", level = input$level2, name = "Remote Ratio")
+    p2 <- box_plot(data, "job_title", level = input$level2, name = "Job Title")
     p3 <- world_map(data, level = input$level2)
     p4 <- top_salary_plot(data, level = input$level2)
     
@@ -194,14 +175,14 @@ server <- function(input, output) {
     combinedPlot <- grid.arrange(p1, p2, p3, p4, ncol = 2, nrow = 2)
     print(combinedPlot)
   },
-  width = 900,
+  width = 980,
   height = 600
   )
   
   ############### Remote Combined Plot ####################################
   output$remoteCombinedPlot <- renderPlot({
-    p1 <- box_plot(data , "experience_level", ratio = input$ratio2)
-    p2 <- box_plot(data, "job_title", ratio = input$ratio2)
+    p1 <- box_plot(data , "experience_level", ratio = input$ratio2, name = "Experience Level")
+    p2 <- box_plot(data, "job_title", ratio = input$ratio2, name = "Job Title")
     p3 <- world_map(data, ratio = input$ratio2)
     p4 <- top_salary_plot(data, ratio = input$ratio2)
     
@@ -209,22 +190,22 @@ server <- function(input, output) {
     combinedPlot <- grid.arrange(p1, p2, p3, p4, ncol = 2, nrow = 2)
     print(combinedPlot)
   },
-  width = 900,
+  width = 980,
   height = 600
   )
   
   ############### Country Combined Plot ####################################
   output$countryCombinedPlot <- renderPlot({
-    p1 <- box_plot(data , "experience_level", ratio = input$ratio2)
-    p2 <- box_plot(data , "remote_ratio", level = input$level2)
-    p3 <- box_plot(data, "job_title", ratio = input$ratio2)
+    p1 <- box_plot(data , "experience_level", ratio = input$ratio2, name = "Experience Level")
+    p2 <- box_plot(data , "remote_ratio", level = input$level2, name = "Remote Ratio")
+    p3 <- box_plot(data, "job_title", ratio = input$ratio2, name = "Job Title")
     p4 <- top_salary_plot(data, ratio = input$ratio2)
     
     # Combine the plots
     combinedPlot <- grid.arrange(p1, p2, p3, p4, ncol = 2, nrow = 2)
     print(combinedPlot)
   },
-  width = 900,
+  width = 980,
   height = 600
   )
   
