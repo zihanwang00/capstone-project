@@ -6,7 +6,7 @@
 ##' calculate rmse for all models
 
 linear_model <- function(df){
-  lm_model <- lm(salary_in_usd ~ experience_level + job_title + employee_residence + remote_ratio, data = df)
+  lm_model <- lm(salary_in_usd ~ ., data = df)
 }
 
 tree_model <- function(df, train_control, grid, method) {
