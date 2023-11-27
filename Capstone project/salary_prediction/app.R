@@ -15,7 +15,7 @@
 #' Select Factor to compare --> boxplots / histograms of average salary
 library(shiny)
 source("utilities.R")
-# Define UI for application that draws a histogram
+
 ui <- fluidPage(
   # Application title
   titlePanel("Salary Prediction"),
@@ -74,7 +74,47 @@ ui <- fluidPage(
                              "))),
                htmlOutput("salary_pred", style = "text-align: center;")
       ),
-      tabPanel("Distribution Plots", plotOutput("combinedPlot")),
+      tabPanel("Explore Job Titles", 
+               fluidRow(
+               column(10, 
+                     selectInput("job_title2", 
+                                 label = h3("Select Job Title to Explore"),
+                                 choices = c(unique(data$job_title))
+                     )
+               )), 
+               plotOutput("titleCombinedPlot")),
+      tabPanel("Explore Seniority Levels", 
+               fluidRow(
+                 column(10, 
+                        selectInput("level2", 
+                                    label = h3("Select Seniority Level to Explore"),
+                                    choices = list("Entry" = "EN",
+                                                   "Mid" = "MI",
+                                                   "Senior" = "SE",
+                                                   "Executive" = "EX")
+                        )
+                 )), 
+               plotOutput("levelCombinedPlot")),
+      tabPanel("Explore Work Models", 
+               fluidRow(
+                 column(10, 
+                        selectInput("ratio2", 
+                                    label = h3("Select Work Model to Explore"),
+                                    choices = list("On-Site" = "0",
+                                                   "Hybrid" = "50",
+                                                   "Remote" = "100")
+                        )
+                 )), 
+               plotOutput("remoteCombinedPlot")),
+      tabPanel("Explore Countries", 
+               fluidRow(
+                 column(10, 
+                        selectInput("country2", 
+                                    label = h3("Select Country to Explore"),
+                                    choices = c(unique(data$employee_residence))
+                        )
+                 )), 
+               plotOutput("countryCombinedPlot")),
       # tabPanel("Salary Distribution", plotOutput("dist_plot")),
       # tabPanel("World Map", plotOutput("salary_plot"))
     )
@@ -95,7 +135,7 @@ server <- function(input, output) {
     input_remote <- ifelse(input$remote_rate == "0", "On-Site", 
                            ifelse(input$remote_rate == "50", "Hybrid", "Fully Remote"))
     input_resid <- input$emp_residence
-    predicted_salary <- round(salary_prediction(linear, input$exp_level, 
+    predicted_salary <- round(salary_prediction(final_model, input$exp_level, 
                                                 input$job_title, input$emp_residence, input$remote_rate))
     
     
@@ -108,15 +148,7 @@ server <- function(input, output) {
     
   })
   
-  
-  ################## Salary Distribution, Histogram ########################
-  output$dist_plot <- renderPlot({
-    data %>%
-      filter(job_title == input$job_title) %>%
-      filter(experience_level == input$exp_level) %>%
-      filter(remote_ratio == input$remote_rate) %>%
-      salary_dist_plot()
-  })  
+
   
   ################## World Map ############################################
   output$salary_plot <- renderPlot({
@@ -125,7 +157,7 @@ server <- function(input, output) {
     
   ################## Boxplots ############################################
   output$remote_plot <- renderPlot({
-    box_plot(data, "remote_ratio")
+    box_plot(data, "remote_ratio", )
   })
   
   output$title_plot <- renderPlot({
@@ -136,18 +168,63 @@ server <- function(input, output) {
     box_plot(data, "experience_level")
   })
   
-  ############### Combined Plot ############################################
-  output$combinedPlot <- renderPlot({
-    p1 <- box_plot(data, "remote_ratio")
-    p2 <- box_plot(data, "experience_level")
-    p3 <- box_plot(data, "job_title")
-    p4 <- world_map(data)
+  ############### Title Combined Plot ############################################
+  output$titleCombinedPlot <- renderPlot({
+    p1 <- box_plot(data , "remote_ratio", title = input$job_title2)
+    p2 <- box_plot(data, "experience_level", title = input$job_title2)
+    p3 <- world_map(data, title = input$job_title2)
+    p4 <- top_salary_plot(data, title = input$job_title2)
     
     # Combine the plots
     combinedPlot <- grid.arrange(p1, p2, p3, p4, ncol = 2, nrow = 2)
     print(combinedPlot)
   },
-  width = 1000,
+  width = 900,
+  height = 600
+  )
+  
+  ############### Level Combined Plot ####################################
+  output$levelCombinedPlot <- renderPlot({
+    p1 <- box_plot(data , "remote_ratio", level = input$level2)
+    p2 <- box_plot(data, "job_title", level = input$level2)
+    p3 <- world_map(data, level = input$level2)
+    p4 <- top_salary_plot(data, level = input$level2)
+    
+    # Combine the plots
+    combinedPlot <- grid.arrange(p1, p2, p3, p4, ncol = 2, nrow = 2)
+    print(combinedPlot)
+  },
+  width = 900,
+  height = 600
+  )
+  
+  ############### Remote Combined Plot ####################################
+  output$remoteCombinedPlot <- renderPlot({
+    p1 <- box_plot(data , "experience_level", ratio = input$ratio2)
+    p2 <- box_plot(data, "job_title", ratio = input$ratio2)
+    p3 <- world_map(data, ratio = input$ratio2)
+    p4 <- top_salary_plot(data, ratio = input$ratio2)
+    
+    # Combine the plots
+    combinedPlot <- grid.arrange(p1, p2, p3, p4, ncol = 2, nrow = 2)
+    print(combinedPlot)
+  },
+  width = 900,
+  height = 600
+  )
+  
+  ############### Country Combined Plot ####################################
+  output$countryCombinedPlot <- renderPlot({
+    p1 <- box_plot(data , "experience_level", ratio = input$ratio2)
+    p2 <- box_plot(data , "remote_ratio", level = input$level2)
+    p3 <- box_plot(data, "job_title", ratio = input$ratio2)
+    p4 <- top_salary_plot(data, ratio = input$ratio2)
+    
+    # Combine the plots
+    combinedPlot <- grid.arrange(p1, p2, p3, p4, ncol = 2, nrow = 2)
+    print(combinedPlot)
+  },
+  width = 900,
   height = 600
   )
   
