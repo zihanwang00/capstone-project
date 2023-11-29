@@ -15,7 +15,7 @@ tree_model <- function(df, train_control, grid, method) {
   df$job_title <- as.factor(df$job_title)
   df$remote_ratio <- as.factor(df$remote_ratio)
 
-  model <- train(salary_in_usd ~ ., data = df, method, trControl = train_control, tuneGrid = grid, verbosity = 0)
+  model <- train(salary_in_usd ~ ., data = df, method, trControl = train_control, tuneGrid = grid)
   
   return(model)
 }
