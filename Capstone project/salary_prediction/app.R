@@ -33,7 +33,7 @@ ui <- fluidPage(
                                     choices = c(unique(data$job_title))
                         )
                  ),
-                 column(2, 
+                 column(3, 
                         selectInput("remote_rate", 
                                     label = h3("Work Model"),
                                     choices = list("On-Site" = "0",
@@ -50,9 +50,9 @@ ui <- fluidPage(
                                                    "Executive" = "EX")
                         )
                  ),
-                 column(4, 
+                 column(3, 
                         selectInput("emp_residence", 
-                                    label = h3("Employee Residence"),
+                                    label = h3("Residence"),
                                     choices = c(unique(data$employee_residence))
                         )
                  )
