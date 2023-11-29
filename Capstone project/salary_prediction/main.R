@@ -56,9 +56,11 @@ train_control <- trainControl(method = "cv", number = 5)
 # the grid of hyperparameters to search for random forest
 grid_rf <- expand.grid(mtry = c(2, 3, 4))
 
-rf_model <- tree_model(cleaned_jobs, train_control, grid_rf, "rf")
+rf_model <- tree_model(train_data, train_control, grid_rf, "rf")
 best_rf <- model_performance(rf_model)
 best_rf$RMSE
+
+# predictions <- predict(rf_model$finalModel, test_data)
 
 saveRDS(lm_model, file = "./lm_model.rds")
 saveRDS(lm_model_transform, file = "./final_model.rds")
