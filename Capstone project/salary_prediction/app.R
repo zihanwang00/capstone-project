@@ -137,13 +137,14 @@ server <- function(input, output) {
     input_resid <- input$emp_residence
     predicted_salary <- round(salary_prediction(final_model, input$exp_level, 
                                                 input$job_title, input$emp_residence, input$remote_rate))
-    
-    
+    lwr <- predicted_salary[,2]
+    upr <- predicted_salary[,3]
+  
     str0 = paste("Job Title:", input_title, "\n\n\n")
     str1 = paste("Work Model:", input_remote, "\n\n\n")
     str2 = paste("Experience Level:", input_level, "\n\n\n")
     str3 = paste("Country of Employment:", input_resid, "\n\n\n")
-    str4 = paste0("The Predicted Average Salary is $", predicted_salary, " US dollars.", "\n\n\n")
+    str4 = paste0("The Predicted Salary Is Between $", lwr," and $", upr, " US dollars.", "\n\n\n")
     HTML(paste(str0, str1, str2, str3, str4, sep = '<br/>'))
     
   })
@@ -154,7 +155,7 @@ server <- function(input, output) {
     p1 <- box_plot(data , "remote_ratio", title = input$job_title2, name = "Remote Ratio")
     p2 <- box_plot(data, "experience_level", title = input$job_title2, name = "Experience Level")
     p3 <- world_map(data, title = input$job_title2)
-    p4 <- top_salary_plot(data, title = input$job_title2)
+    p4 <- top_salary_plot2(data, title = input$job_title2)
     
     # Combine the plots
     combinedPlot <- grid.arrange(p1, p2, p3, p4, ncol = 2, nrow = 2)
