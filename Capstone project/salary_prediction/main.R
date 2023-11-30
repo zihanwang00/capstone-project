@@ -47,8 +47,8 @@ d <- lm_transform$x[which.max(lm_transform$y)]
 lm_model_transform <- lm(salary_in_usd^d ~ ., data = train_data)
 summary(lm_model_transform)
 
-predictions <- predict(lm_model_transform, test_data)^(1/d)
-lm_rmse_transform <- sqrt(mean((predictions - test_data$salary_in_usd)^2))
+predictions <- predict(lm_model_transform, test_data, interval = "predict", level = 0.9)^(1/d)
+lm_rmse_transform <- sqrt(mean((predictions[,1] - test_data$salary_in_usd)^2))
 
 ######################### Tree Models ############################
 # train control for random forest and gradient boost
