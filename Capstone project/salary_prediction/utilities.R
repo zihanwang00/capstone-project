@@ -27,7 +27,10 @@ data <- data %>%
 
 ################### Salary Prediction ##########################
 salary_prediction <- function(model, level, title, residence, ratio){
-  pre_new <- predict(model, data.frame(experience_level = level, job_title = title, employee_residence = residence, remote_ratio = ratio))^(1/d)
+  pre_new <- predict(model, 
+                     data.frame(experience_level = level, job_title = title, employee_residence = residence, remote_ratio = ratio), 
+                     interval = "predict",
+                     level = 0.9)^(1/d)
   return(pre_new)
 }
 
@@ -131,6 +134,60 @@ top_salary_plot <- function(data, level=NULL, title=NULL, residence=NULL, ratio=
          x = "",
          y = "Average Salary in USD")
 }
+
+################# Top Salary Plot2 #############################
+top_salary_plot2 <- function(data, level=NULL, title=NULL, residence=NULL, ratio=NULL){
+  # Dynamic filtering based on provided arguments
+  if (!is.null(level)) {
+    data <- data %>% filter(experience_level == level)
+  }
+  if (!is.null(title)) {
+    data <- data %>% filter(job_title == title)
+  }
+  if (!is.null(residence)) {
+    data <- data %>% filter(employee_residence == residence)
+  }
+  if (!is.null(ratio)) {
+    data <- data %>% filter(remote_ratio == ratio)
+  }
+  
+  # Aggregate data to find the average salary, lower bound, and upper bound
+  aggregated_data <- data %>%
+    group_by(experience_level, job_title, employee_residence, remote_ratio) %>%
+    summarize(
+      average_salary = mean(salary_in_usd, na.rm = TRUE),
+      sd_salary = sd(salary_in_usd, na.rm = TRUE),
+      count = n(),
+      se_salary = sd_salary / sqrt(count), # Standard error
+      lower_ci = average_salary - qt(0.975, df = count - 1) * se_salary, # Lower bound of the 95% CI
+      upper_ci = average_salary + qt(0.975, df = count - 1) * se_salary  # Upper bound of the 95% CI
+    ) %>%
+    ungroup() %>%
+    arrange(desc(average_salary)) %>%
+    slice_head(n = 3) # Get the top 3 combinations
+  
+  # Melt the data to long format for ggplot
+  salary_long <- tidyr::pivot_longer(aggregated_data, 
+                                     cols = c(lower_ci, average_salary, upper_ci), 
+                                     names_to = "statistic", 
+                                     values_to = "salary")
+  
+  # Create the plot with labels for each bar
+  ggplot(salary_long, aes(x = interaction(experience_level, job_title, employee_residence, remote_ratio), 
+                          y = salary, fill = statistic)) +
+    geom_col(position = "dodge") +
+    geom_text(aes(label = round(salary, 2)), 
+              position = position_dodge(width = 0.9), 
+              vjust = -0.25, 
+              size = 3.5) +
+    scale_fill_manual(values = c("red", "blue", "green")) +
+    theme_bw() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+    labs(title = "Top 3 Salary Statistics", 
+         x = "",
+         y = "Salary in USD")
+}
+
 
 # Example usage
 top_salary_plot(data, title = "Data Scientist")
