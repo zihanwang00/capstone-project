@@ -1,6 +1,4 @@
 ################ Utilities #######################
-setwd("~/Documents/GitHub/capstone-project/Capstone project")
-
 library(readr)
 library(dplyr)
 library(ggplot2)

@@ -8,8 +8,6 @@ library(caret)
 library(xgboost)
 
 
-setwd("~/Documents/GitHub/capstone-project/Capstone project")
-
 source("./salary_prediction/r_scripts/clean_data.R")
 source("./salary_prediction/r_scripts/inflation.R")
 source("./salary_prediction/r_scripts/fit_model.R")
