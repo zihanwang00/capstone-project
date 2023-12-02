@@ -34,7 +34,7 @@ split_index <- createDataPartition(cleaned_jobs$employee_residence, p = 0.7, lis
 train_data <- cleaned_jobs[split_index, ]
 test_data <- cleaned_jobs[-split_index, ]
 
-lm_model <- lm(salary_in_usd ~ ., data = train_data)
+lm_model <- lm(salary_in_usd ~ experience_level*remote_ratio + employee_residence + job_title, data = train_data)
 summary(lm_model)
 predictions <- predict(lm_model, test_data)
 lm_rmse <- sqrt(mean((predictions - test_data$salary_in_usd)^2))
@@ -44,7 +44,8 @@ source("http://www.reuningscherer.net/s&ds230/Rfuncs/regJDRS.txt")
 lm_transform <- boxCox(lm_model)
 d <- lm_transform$x[which.max(lm_transform$y)]
 
-lm_model_transform <- lm(salary_in_usd^d ~ ., data = train_data)
+lm_model_transform <- lm(salary_in_usd^d ~ experience_level+ remote_ratio + employee_residence + job_title + experience_level:remote_ratio + employee_residence:remote_ratio + employee_residence:experience_level, 
+                         data = train_data)
 summary(lm_model_transform)
 
 predictions <- predict(lm_model_transform, test_data, interval = "predict", level = 0.9)^(1/d)
@@ -70,8 +71,20 @@ saveRDS(lm_model_transform, file = "./final_model.rds")
 #' Choose Level
 #' 
 # 
-# na_ratio <- jobs %>%
-#   summarise_all(~sum(is.na(.))/n()*100)
+
+table(cleaned_jobs$experience_level)
+table(cleaned_jobs$remote_ratio)
+table(cleaned_jobs$employee_residence)
+table(cleaned_jobs$job_title)
+
+
+mod1 <- lm(salary_in_usd ~ experience_level*remote_ratio, data = cleaned_jobs)
+Anova(mod1, type = 'III')
+
+mod2 <- lm(salary_in_usd ~ employee_residence*remote_ratio, data = cleaned_jobs)
+Anova(mod2, type = 'III')
+
+plot(mod1)
 # 
 # 
 # job_title <- cleaned_jobs %>% 
