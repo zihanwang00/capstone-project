@@ -150,12 +150,12 @@ server <- function(input, output) {
   })
   
   
-  ############### Title Combined Plot ############################################
+  ###################### Title Combined Plot ##############################
   output$titleCombinedPlot <- renderPlot({
     p1 <- box_plot(data , "remote_ratio", title = input$job_title2, name = "Remote Ratio")
     p2 <- box_plot(data, "experience_level", title = input$job_title2, name = "Experience Level")
     p3 <- world_map(data, title = input$job_title2)
-    p4 <- top_salary_plot2(data, title = input$job_title2)
+    p4 <- top_salary_plot(data, title = input$job_title2)
     
     # Combine the plots
     combinedPlot <- grid.arrange(p1, p2, p3, p4, ncol = 2, nrow = 2)
@@ -165,7 +165,7 @@ server <- function(input, output) {
   height = 600
   )
   
-  ############### Level Combined Plot ####################################
+  ##################### Level Combined Plot ###############################
   output$levelCombinedPlot <- renderPlot({
     p1 <- box_plot(data , "remote_ratio", level = input$level2, name = "Remote Ratio")
     p2 <- box_plot(data, "job_title", level = input$level2, name = "Job Title")
@@ -180,7 +180,7 @@ server <- function(input, output) {
   height = 600
   )
   
-  ############### Remote Combined Plot ####################################
+  #################### Remote Combined Plot ###############################
   output$remoteCombinedPlot <- renderPlot({
     p1 <- box_plot(data , "experience_level", ratio = input$ratio2, name = "Experience Level")
     p2 <- box_plot(data, "job_title", ratio = input$ratio2, name = "Job Title")
@@ -212,5 +212,5 @@ server <- function(input, output) {
   
 }
 
-# Run the application 
+# Run the application
 shinyApp(ui = ui, server = server)
