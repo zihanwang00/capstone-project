@@ -42,7 +42,9 @@ source("http://www.reuningscherer.net/s&ds230/Rfuncs/regJDRS.txt")
 lm_transform <- boxCox(lm_model)
 d <- lm_transform$x[which.max(lm_transform$y)]
 
-lm_model_transform <- lm(salary_in_usd^d ~ experience_level+ remote_ratio + employee_residence + job_title + experience_level:remote_ratio + employee_residence:remote_ratio + employee_residence:experience_level, 
+lm_model_transform <- lm(salary_in_usd^d ~ experience_level+ remote_ratio + employee_residence + 
+                           job_title + experience_level:remote_ratio + 
+                           employee_residence:remote_ratio + employee_residence:experience_level, 
                          data = train_data)
 summary(lm_model_transform)
 
@@ -107,22 +109,3 @@ plot(mod1)
 # plot_histograms(cleaned_jobs, "remote_ratio")
 # plot_histograms(cleaned_jobs, "experience_level")
 # 
-# 
-
-
-
-
-#' 1. countries with n < 10 to "others"
-#' 2. Stratified Sampling to separate train_data and test_data
-#' 3. Weighted Sampling: use sample weights to give more importance to underrepresented classes.
-#' 4. Random Forest / Gradient Boosting -> more robust to imbalanced data
-#' 5. Evaluation Metric: 
-#' 
-#' Q: Countries in my data are: xxxx. How to visualize the difference of salaries on country (histogram)
-#' 
-#' 
-#' Salary Prediction: (record linkage package)
-#' If range is the outcome, just pick the middle point -- 
-#' Regression of a Range as a outcome (If the outcome is range)
-#' Choose the outcome to be middle point and stand deviation
-#' 
