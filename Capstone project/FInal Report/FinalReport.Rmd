@@ -3,9 +3,9 @@ title: "S&DS625 Report"
 author: "Zihan Wang"
 date: "December 15th, 2023"
 output:
+  word_document: default
   html_document:
     df_print: paged
-  word_document: default
   pdf_document: default
 ---
 
@@ -26,13 +26,8 @@ library(ggplot2)
 ```
 
 ## Abstract
-As the data science job market burgeons, potential employees often grapple with gauging whether the salary offered aligns with market standards, due to the absence of a reference framework. Addressing this gap, This project delves into the analysis of data science-related job salaries, leveraging a dataset sourced from Kaggle. The dataset encompasses a range of attributes such as work year, experience level, employment type, job title, salary in USD, employee residence, remote ratio, and more. However, the focal point of the analysis rests on key predictors like experience level, job title, employee residence, and remote ratio to unveil their influence on salaries, measured in USD and adjusted for inflation based on the offer year.  The project employs linear regression and tree-based random forest models with different hyperparameters in its initial phase. Each model incorporates predictors such as job title, country of employee residence, work mode (remote, hybrid, on-site), and experience level (from entry to senior levels), with the inflation-adjusted salary in USD serving as the outcome variable. The findings from these models underscore a significant correlation between the stated predictors and data science job salaries, highlighting notable variations across different countries and experience levels. Subsequently, a comparative error analysis of various models led to the selection of the linear regression model with transformed salary for salary prediction. This choice was informed by comparing the mean squared error of the models, where linear regression model demonstrated a smallest squared error. The final model can predict the estimated salary based on the employee's residence, job title, employee residence, and remote ratio etc. The culmination of this analysis not only provides valuable insights into the salary dynamics within the data science domain but also underpins a web application designed to offer employees a benchmark for evaluating job offers in this field. This application, fueled by the linear regression model's predictions, stands as a testament to the practical applicability of the project's findings, empowering data science professionals with a robust tool for informed salary negotiations.
+As the data science job market burgeons, potential employees often grapple with gauging whether the salary offered aligns with market standards, due to the absence of a reference framework. Addressing this gap, This project delves into the analysis of data science-related job salaries, leveraging a dataset sourced from Kaggle. The dataset encompasses a range of attributes such as work year, experience level, employment type, job title, salary in USD, employee residence, remote ratio, and more. However, the focal point of the analysis rests on key predictors like experience level, job title, employee residence, and remote ratio to unveil their influence on salaries, measured in USD and adjusted for inflation based on the offer year.  The project employs linear regression and tree-based random forest models with different hyperparameters in its initial phase. Each model incorporates predictors such as job title, country of employee residence, work mode (remote, hybrid, on-site), and experience level (from entry to senior levels), with the inflation-adjusted salary in USD serving as the outcome variable. The findings from these models underscore a significant correlation between the stated predictors and data science job salaries, highlighting notable variations across different countries and experience levels. Subsequently, a comparative error analysis of various models led to the selection of the linear regression model with transformed salary for salary prediction. This choice was informed by comparing the root mean squared error of the models, where linear regression model demonstrated a smallest squared error. The final model can predict the estimated salary based on the employee's residence, job title, employee residence, and remote ratio etc. The culmination of this analysis not only provides valuable insights into the salary dynamics within the data science domain but also underpins a web application designed to offer employees a benchmark for evaluating job offers in this field. This application, fueled by the linear regression model's predictions, stands as a testament to the practical applicability of the project's findings, empowering data science professionals with a robust tool for informed salary negotiations.
 
-
-## Executive Summary
-An executive summary is typically longer than the abstract, up to a page, could possibly contain key visualizations, tables, or other figures that help communicate either the raw data or the results of the model, and is intended for someone outside of the data science/analytics team of an organization. It is important to be as concise as possible, and describe each of those points above without using language that is overly technical and not part of commonly used English. The executive summary is a separate document. 
-
-Note that in the abstract, executive summary, and throughout the report you should avoid using first-person singular pronouns like "I" and "me", even if you are the only author. Use "we" or use passive voice. 
 
 ## Section I: Introduction
 
@@ -84,12 +79,14 @@ avg_salary_plot <- function(column, col_name) {
 
 ```
 
+
 #### Mean Salary by Experience Level
 The first visualization showcases the mean salary delineated by experience level, revealing a clear stratification of earnings across different stages of professional development. Experienced (EX) professionals command the highest salaries, followed by senior (SE), mid-level (MI), and entry-level (EN) positions. This descending trend illustrates the premium placed on accumulated expertise within the data science field.
 
 ```{r}
 avg_salary_plot("experience_level", "Experience Level")
 ```
+
 #### Mean Salary by Remote Ratio
 The second graph pivots to analyze the impact of remote working arrangements on salary. Here, a delineation is evident between fully remote (100), partial remote (50), and non-remote (0) roles. The findings indicate that full remote work does not necessarily translate to the highest salaries, prompting a deeper consideration of how workplace flexibility intersects with compensation.
 
@@ -118,11 +115,14 @@ avg_salary_plot2 <- function(column, col_name) {
 }
 ```
 
+
 #### Mean Salary by Employee Residence
 Delving into geographic influences, the third graph correlates mean salary with the employee's country of residence. The United States emerges as the top-paying country, followed closely by Canada and Ireland, descending through to Argentina. This gradient reflects the economic and industry-specific factors that shape salary benchmarks globally.
 ```{r}
 avg_salary_plot2("employee_residence", "Employee Residence")
 ```
+
+
 #### Mean Salary by Job Title
 Lastly, we examine how different job titles within the data science umbrella correspond to salary variations. Research Scientists, Data Architects, and Machine Learning Engineers are among the top earners, with Business Intelligence Engineers and Data Analysts comparatively lower on the salary scale. This hierarchy reflects the market demand and perceived value of specialized skills.
 
@@ -138,11 +138,13 @@ In this section, we delve into the construction of a predictive model for data s
 #### Linear Regression Model
 The linear regression model assumes a linear relationship between the independent variables (or predictors) and the dependent variable (or outcome). The predictors in the linear model are:
 
-* Experience Level: Level of Seniority 
-
+* Experience Level: Level of seniority
+* Remote Ratio: Level of remoteness in the Job, 0 represents fully on-site, 50 represents hybrid, 100 represents fully remote.
+* Job Title: Title of the job
+* Employee residence: The residence of the country that the work is located.
 
 Our model takes the form:
-$Y_i = \beta_0 + \beta_1X_{i_1} + \beta_2X_{i_2} + \beta_3X_{i_3} + \beta_4X_{i_4} + \epsilon$, where $Y_i $ represents the salary in USD, $\beta_0$ is the y-intercept, $X_{i_1}$ through $X_{i_4} $ represent the four predictors, $\beta_{1}$ through $\beta_{4}$ represents the regression coefficients for the predictor variables, and $\epsilon$ is the error term.
+$Y_i = \beta_0 + \beta_1X_{i_1} + \beta_2X_{i_2} + \beta_3X_{i_3} + \beta_4X_{i_4} + \epsilon$, where $Y_i$ represents the salary in USD, $\beta_0$ is the y-intercept, $X_{i_1}$ through $X_{i_4}$ represent the four predictors, $\beta_{1}$ through $\beta_{4}$ represents the regression coefficients for the predictor variables, and $\epsilon$ is the error term.
 
 ```{r}
 lm_model <- readRDS("../lm_model.rds")
@@ -150,15 +152,16 @@ final_model <- readRDS("../final_model.rds")
 ```
 
 #### Assumptions and Transformations
-The preliminary assumption checks revealed deviations from normality, linearity, and heteroscedasticity The normal Q-Q plot tests the assumptions of normality. In the original multiple linear regression model, the normal Q-Q plot indicated a departure from normal distribution. The Residuals vs. Fitted plot check linearity linearity between predictors and outcome variable. In the Residuals vs. Fitted plot below, there is a flat linear line for the residuals, indicating a linear relationship. Lastly, Scale-Location plot checks a heteroscedasticity of the model, a horizontal line with equally spread points on the plot confirms the heteroscedasticity assumption. In the plot below, the linear line is not completely horizontal with increase in squared root of standardized residuals as fitted values increase, but the points are relatively spread out.
+The preliminary assumption checks revealed deviations from normality, linearity, and heteroscedasticity. The normal Q-Q plot tests the assumptions of normality, The Residuals vs. Fitted plot check linearity linearity between predictors and outcome variable, the Scale-Location plot checks a heteroscedasticity of the model. In the original multiple linear regression model, the normal Q-Q plot indicated a departure from normal distribution. The Residuals vs. Fitted plot shows a flat linear line for the residuals, indicating a linear relationship. In the Scale-Location plot, the linear line is not completely horizontal with increase in squared root of standardized residuals as fitted values increase, but the points are relatively spread out.
 
-To address non-normality of the original model, a Box-Cox transformation was applied to the outcome variable, which resulted in a more normally distributed outcome and improved linearity, as evidenced by the transformed residuals plot. The transformation exponent was determined to be 0.3030303, resulting in a transformed salary variable for our multiple regression model. From the plots below, we can see normality, linearity, and heteroscedasticity are better addressed, especially from the Normal Q-Q plot, where the points are more in the linear line with few outliers. Therefore, the final model linear regression model with transformed outcome variable:
-$Y_i^d = \beta_0 + \beta_1X_{i_1} + \beta_2X_{i_2} + \beta_3X_{i_3} + \beta_4X_{i_4} + \epsilon$, where $d = 0.3030303$ is the Box-Cox transformation value.
 
 ```{r}
 par(mfrow = c(2,2))
 plot(lm_model)
 ```
+
+To address non-normality of the original model, a Box-Cox transformation was applied to the outcome variable, which resulted in a more normally distributed outcome and improved linearity, as evidenced by the transformed residuals plot. The transformation exponent was determined to be 0.3030303, resulting in a transformed salary variable for our multiple regression model. From the plots below, we can see normality, linearity, and heteroscedasticity are better addressed, especially from the Normal Q-Q plot, where the points are more in the linear line with few outliers. Therefore, the final model linear regression model with transformed outcome variable:
+$Y_i^d = \beta_0 + \beta_1X_{i_1} + \beta_2X_{i_2} + \beta_3X_{i_3} + \beta_4X_{i_4} + \epsilon$, where $d = 0.3030303$ is the Box-Cox transformation value.
 
 
 ```{r}
@@ -181,6 +184,7 @@ Interpreting the results for both technical and non-technical audiences hinges o
 In conclusion, the linear regression model, with the applied Box-Cox transformation, provides a robust framework for understanding the determinants of data science job salaries. It reveals the crucial role of experience, job title, and geographic location in shaping salary outcomes, offering valuable insights for job seekers and employers alike.
 
 ## Section IV: Visualization and interpretation of the results
+
 The insights drawn from our regression analysis provide substantial implications for the data science job market. Our model's results, depicted in the regression coefficient plot below, offer a quantified look into how various factors affect data science salaries.
 
 The coefficient plot indicates that geographical location has a significant impact on salaries, with 'United States' and 'Canada' showing the most substantial positive effect. Conversely, job titles such as 'Data Analyst' and 'Business Intelligence Engineer' are associated with lower salaries, suggesting that certain roles within the data science field command premium pay. The positive coefficients for experience levels—particularly 'Executive' (EX)—highlight the premium on experience in the industry.
@@ -211,15 +215,16 @@ ggplot(coef_df, aes(x = Coefficient, y = reorder(Variable, Coefficient))) +
 These findings have direct implications for data science professionals assessing job offers and career paths. The model underscores the importance of location and role specificity in salary negotiations. For instance, a Data Scientist in the United States can expect a significantly different salary from their counterpart in Spain, emphasizing the economic variances across regions.
 
 #### Interactive Salary Prediction Tool
-An interactive R Shiny web application is also created to allow users to predict salaries based on their job title, work model, seniority level, and country of residence. There are 5 tabs of the application. The application's first tab is shown as the first picture below, which showcases the predicted salary for selected inputs. When people select inputs of Job Title, Work Model, Seniority Level, and Employment Residence, the application will provide an immediate, personalized salary estimate that reflects the model's outputs.
+An interactive R Shiny web application is also created to allow users to predict the range of salaries based on their job title, work model, seniority level, and country of residence. There are 5 tabs of the application. The application's first tab is shown as the first picture below, which showcases the predicted salary range for selected inputs. When people select inputs of Job Title, Work Model, Seniority Level, and Employment Residence, the application will provide an immediate, personalized salary range estimate that reflects the model's outputs.
 
-![](/Users/zihanwang/Documents/GitHub/capstone-project/Capstone project/Final Report/salary_prediction_web1.png)
+![](~/salary_prediction_web1.png)
 
 The subsequent 4 tabs offer an exploratory interface for users to understand salary distributions across different categories. For example, as shown in the second picture of the web application below, the second tab allows for exploring different data science related jobs. Selecting a job title reveals the distribution of salaries by remote ratio, experience level, and a world map visualizing the average salary by country. It also visualizes the top 3 salary combination of remote ratio, experience level, and employee residence based on the title selected. This interactive exploration not only adds depth to the user's understanding of the market but also visualizes the model's interpretability across different demographics.
 
 The tabs focusing on Seniority Level, Work Model, and Country (tabs 3 to 5, not shown here) further demonstrate the multifaceted nature of the data science salary landscape with similar features as the second tab. Users can examine the variances in salary distributions within each category and identify top 3 salary combinations, facilitating an informed decision-making process for career development.
 
-![](/Users/zihanwang/Documents/GitHub/capstone-project/Capstone project/Final Report/salary_prediction_web2.png)
+![](~/Documents/GitHub/capstone-project/Capstone project/Final Report/salary_prediction_web2.png)
+
 ## Section V: Conclusions and Recommendations
 
 The analysis conducted in this project provides valuable insights into the factors influencing data science salaries across different regions and job titles. The regression results elucidate the impact of experience level, location, and job specificity on potential earnings within the data science field. Our findings confirm that geographic location is a significant salary determinant, with positions in the United States and Canada commanding higher wages. Additionally, the model highlights the premium on professional experience, particularly at the executive level.
@@ -232,5 +237,3 @@ Moreover, further research could explore the implications of emerging technologi
 
 In conclusion, while the current model offers a solid foundation for salary prediction within the data science realm, continuous improvement and updates will ensure its relevance and accuracy in a fast-paced and ever-changing industry.
 
-## Appendix (optional)
-Any supporting information or additional information that isn't necessary to have in the main body of the paper. For example, huge tables can go here, especially if they are more than one page. Tables that are, for example, 100 pages most likely should not be included at all. 
