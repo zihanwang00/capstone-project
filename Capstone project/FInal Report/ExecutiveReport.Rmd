@@ -3,8 +3,10 @@ title: "Executive Report"
 author: "Zihan Wang"
 date: "2023-12-15"
 output:
-  pdf_document: default
+  html_document:
+    df_print: paged
   word_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -20,6 +22,16 @@ knitr::opts_chunk$set(echo   =FALSE,      ## show or suppress the code
 ```
 
 
-As the data science job market burgeons, potential employees often grapple with gauging whether the salary offered aligns with market standards, due to the absence of a reference framework. Addressing this gap, This project delves into the analysis of data science-related job salaries, leveraging a dataset sourced from Kaggle. The dataset encompasses a range of attributes such as work year, experience level, employment type, job title, salary in USD, employee residence, remote ratio, and more. However, the focal point of the analysis rests on key predictors like experience level, job title, employee residence, and remote ratio to unveil their influence on salaries, measured in USD and adjusted for inflation based on the offer year.  The project employs linear regression and tree-based random forest models with different hyperparameters in its initial phase. Each model incorporates predictors such as job title, country of employee residence, work mode (remote, hybrid, on-site), and experience level (from entry to senior levels), with the inflation-adjusted salary in USD serving as the outcome variable. The findings from these models underscore a significant correlation between the stated predictors and data science job salaries, highlighting notable variations across different countries and experience levels. 
+## Executive Summary
 
-Subsequently, a comparative error analysis of various models led to the selection of the linear regression model for salary prediction. This choice was informed by comparing the mean squared error of the models, where linear regression model demonstrated a smallest squared error. The final model can predict the estimated salary based on the employee's residence, job title, employee residence, and remote ratio etc. The culmination of this analysis not only provides valuable insights into the salary dynamics within the data science domain but also underpins a web application designed to offer employees a benchmark for evaluating job offers in this field. This application, fueled by the linear regression model's predictions, stands as a testament to the practical applicability of the project's findings, empowering data science professionals with a robust tool for informed salary negotiations.
+This study embarked on unraveling the complexities of salary variations within the data science job market. The model developed herein is predicated on a robust dataset acquired from Kaggle, capturing diverse facets such as experience level, job title, geographic location, and remote work arrangements. The essence of this research was to construct a predictive model, enabling data science professionals to benchmark salaries and navigate job offers with a data-driven approach.
+
+The statistical analysis culminated in a model that accentuates the substantial influence of geographic location, experience, and job function on salary discrepancies. The United States and Canada emerged as regions that remunerate data science roles most generously. Conversely, it was observed that job titles bearing a specialty, like Data Architects, are associated with higher remuneration, underscoring the value of niche expertise in the field.
+
+An integral component of this project is the interactive web application designed for real-time salary prediction. This user-friendly tool caters to the bespoke needs of users, allowing them to input individual professional details and derive personalized salary estimates. Moreover, the application serves as a platform for exploring salary distributions across different demographic categories, thus providing a comprehensive visualization of the data science salary landscape.
+
+From the regression analysis (refer to Screenshot 1 for the coefficient plot), it is discernible that experience level and geographic location are pivotal in dictating salary outcomes. Insert a screenshot of the coefficient plot after discussing the regression results to visually anchor the text. The application screenshots, showcasing the salary distribution and top salary combinations (insert Screenshots 3 and 4 respectively), should follow the discussion on the web application's functionality to give a tangible sense of its capabilities.
+
+Future enhancements to the dataset are recommended to refine the model's precision further. Including additional predictors such as educational background, certifications, and industry-specific experience could offer a more nuanced salary forecast. The prospect of integrating real-time data updates and expanding the application's features could greatly augment its utility and user engagement.
+
+In conclusion, the project delineates a pragmatic framework for salary prediction in the data science realm. The findings and the accompanying web application not only provide a snapshot of the current state of data science salaries but also lay the groundwork for future research and continuous development in modeling economic trends within the job market.
