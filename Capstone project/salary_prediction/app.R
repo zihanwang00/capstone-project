@@ -35,7 +35,7 @@ ui <- fluidPage(
                  ),
                  column(3, 
                         selectInput("remote_rate", 
-                                    label = h3("Work Model"),
+                                    label = h3("Work Mode"),
                                     choices = list("On-Site" = "0",
                                                    "Hybrid" = "50",
                                                    "Remote" = "100")
@@ -95,11 +95,11 @@ ui <- fluidPage(
                         )
                  )), 
                plotOutput("levelCombinedPlot")),
-      tabPanel("Explore Work Models", 
+      tabPanel("Explore Work Modes", 
                fluidRow(
                  column(10, 
                         selectInput("ratio2", 
-                                    label = h3("Select Work Model to Explore"),
+                                    label = h3("Select Work Mode to Explore"),
                                     choices = list("On-Site" = "0",
                                                    "Hybrid" = "50",
                                                    "Remote" = "100")
@@ -115,8 +115,7 @@ ui <- fluidPage(
                         )
                  )), 
                plotOutput("countryCombinedPlot")),
-      # tabPanel("Salary Distribution", plotOutput("dist_plot")),
-      # tabPanel("World Map", plotOutput("salary_plot"))
+
     )
   )
 )
@@ -139,13 +138,15 @@ server <- function(input, output) {
                                                 input$job_title, input$emp_residence, input$remote_rate))
     lwr <- predicted_salary[,2]
     upr <- predicted_salary[,3]
+    avg <- predicted_salary[,1]
   
     str0 = paste("Job Title:", input_title, "\n\n\n")
-    str1 = paste("Work Model:", input_remote, "\n\n\n")
+    str1 = paste("Work Mode:", input_remote, "\n\n\n")
     str2 = paste("Experience Level:", input_level, "\n\n\n")
     str3 = paste("Country of Employment:", input_resid, "\n\n\n")
-    str4 = paste0("The Predicted Salary Is Between $", lwr," and $", upr, " US dollars.", "\n\n\n")
-    HTML(paste(str0, str1, str2, str3, str4, sep = '<br/>'))
+    str4 = paste0("The Predicted Average Salary Is $", avg, "\n\n\n")
+    str5 = paste0("The Predicted Salary Is Between $", lwr," and $", upr, " US dollars.", "\n\n\n")
+    HTML(paste(str0, str1, str2, str3, str4, str5, sep = '<br/>'))
     
   })
   

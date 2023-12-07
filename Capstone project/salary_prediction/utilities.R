@@ -12,8 +12,8 @@ library(rnaturalearth)
 library(rnaturalearthdata)
 
 
-data <- read_csv("./cleaned_jobs.csv")
-final_model <- readRDS("./final_model.rds")
+data <- read_csv("cleaned_jobs.csv")
+final_model <- readRDS("final_model.rds")
 d <- 0.3030303
 
 data <- data %>%
@@ -135,9 +135,10 @@ top_salary_plot <- function(data, level=NULL, title=NULL, residence=NULL, ratio=
     geom_segment(aes(xend = interaction(experience_level, job_title, employee_residence, remote_ratio), 
                      y = lower_ci, yend = upper_ci), color = "darkblue") +
     geom_point(size = 3, color = "darkblue") +
-    geom_text(aes(label = paste0("Mean: $", round(average_salary, 2), 
-                                 "\nLower: $", round(lower_ci, 2), 
-                                 "\nUpper: $", round(upper_ci, 2))),
+    geom_text(aes(label = paste0("Upper: $", round(upper_ci, 2),
+                                 "\nMean: $", round(average_salary, 2), 
+                                 "\nLower: $", round(lower_ci, 2)
+                                  )),
               position = position_nudge(y = 0), hjust = -0.1, size = 3, color = "black") +
     theme_bw() +
     theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
