@@ -26,7 +26,7 @@ library(ggplot2)
 ```
 
 ## Abstract
-As the data science job market burgeons, potential employees often grapple with gauging whether the salary offered aligns with market standards, due to the absence of a reference framework. Addressing this gap, This project delves into the analysis of data science-related job salaries, leveraging a dataset sourced from Kaggle. The dataset encompasses a range of attributes such as work year, experience level, employment type, job title, salary in USD, employee residence, remote ratio, and more. However, the focal point of the analysis rests on key predictors like experience level, job title, employee residence, and remote ratio to unveil their influence on salaries, measured in USD and adjusted for inflation based on the offer year.  The project employs linear regression and tree-based random forest models with different hyperparameters in its initial phase. Each model incorporates predictors such as job title, country of employee residence, work mode (remote, hybrid, on-site), and experience level (from entry to senior levels), with the inflation-adjusted salary in USD serving as the outcome variable. The findings from these models underscore a significant correlation between the stated predictors and data science job salaries, highlighting notable variations across different countries and experience levels. Subsequently, a comparative error analysis of various models led to the selection of the linear regression model with transformed salary for salary prediction. This choice was informed by comparing the root mean squared error of the models, where linear regression model demonstrated a smallest squared error. The final model can predict the estimated salary based on the employee's residence, job title, employee residence, and remote ratio etc. The culmination of this analysis not only provides valuable insights into the salary dynamics within the data science domain but also underpins a web application designed to offer employees a benchmark for evaluating job offers in this field. This application, fueled by the linear regression model's predictions, stands as a testament to the practical applicability of the project's findings, empowering data science professionals with a robust tool for informed salary negotiations.
+As the data science job market burgeons, potential employees often grapple with gauging whether the salary offered aligns with market standards, due to the absence of a reference framework. Addressing this gap, This project delves into the analysis of data science-related job salaries, leveraging a dataset sourced from Kaggle. The dataset encompasses a range of attributes such as work year, experience level, employment type, job title, salary in USD, employee residence, remote ratio, and more. However, the focal point of the analysis rests on key predictors like experience level, job title, employee residence, and remote ratio to unveil their influence on salaries, measured in USD and adjusted for inflation based on the offer year. The project employs linear regression to incorporate predictors such as job title, country of employee residence, work mode (remote, hybrid, on-site), and experience level (from entry to senior levels), with the inflation-adjusted salary in USD serving as the outcome variable. The findings from linear model underscore a significant correlation between the stated predictors and data science job salaries, highlighting notable variations across different countries and experience levels. Subsequently, a comparative error analysis of various models led to the selection of the linear regression model with transformed salary for salary prediction. This choice was informed by comparing the root mean squared error of the models, where linear regression model demonstrated a smallest squared error. The final model can predict the estimated salary based on the employee's residence, job title, employee residence, and remote ratio etc. The culmination of this analysis not only provides valuable insights into the salary dynamics within the data science domain but also underpins a web application designed to offer employees a benchmark for evaluating job offers in this field. This application, fueled by the linear regression model's predictions, stands as a testament to the practical applicability of the project's findings, empowering data science professionals with a robust tool for informed salary negotiations.
 
 
 ## Section I: Introduction
@@ -50,7 +50,6 @@ This section presents a comprehensive overview of the key variables within the d
 data <- read_csv("../cleaned_jobs.csv")
 data <- data %>%
   mutate(remote_ratio = as.factor(remote_ratio))
-
 ```
 
 
@@ -66,16 +65,17 @@ avg_salary_plot <- function(column, col_name) {
     ungroup() %>% # Ungroup to ensure the mutate affects the entire dataframe
     mutate(!!col_sym := forcats::fct_reorder(!!col_sym, avg_salary, .desc = TRUE))
 
-  ggplot(avg_salary, aes_string(x = column, y = "avg_salary", fill = column)) +
-    geom_bar(stat = "identity", position = position_dodge()) +
+  ggplot(data, aes_string(x = column, y = "salary_in_usd", fill = column)) +
+    geom_boxplot() +
     scale_y_continuous(labels = scales::comma) +
-    labs(title = paste("Mean Salary by", col_name), x = col_name, y = "Mean Salary (in USD)") +
+    labs(title = paste("Salary Distribution by", col_name), x = col_name, y = "Salary (in USD)") +
     theme_bw() +
     scale_fill_brewer(palette = 1) +
     theme(legend.title = element_blank(),
           legend.position = "bottom",
-          axis.text.x = element_text(hjust = 1))
+          axis.text.x = element_text(angle = 45, hjust = 1))
 }
+
 
 ```
 
@@ -129,6 +129,7 @@ Lastly, we examine how different job titles within the data science umbrella cor
 ```{r}
 avg_salary_plot2("job_title", "Job Title")
 ```
+
 These visualizations serve as a compelling prelude to the predictive modeling in Section III, where we construct and evaluate a linear regression model based on the highlighted predictors. The consistency of the trends observed here with the model's findings reinforces the conclusion that experience level, job title, employee residence, and remote ratio are significant determinants of salary in the data science domain. The visual evidence provided sets the stage for a nuanced discussion on the results of the model and their implications for data science professionals navigating the job market.
 
 ## Section III: Modeling/Analysis
@@ -138,17 +139,17 @@ In this section, we delve into the construction of a predictive model for data s
 #### Linear Regression Model
 The linear regression model assumes a linear relationship between the independent variables (or predictors) and the dependent variable (or outcome). The predictors in the linear model are:
 
-* Experience Level: Level of seniority
-* Remote Ratio: Level of remoteness in the Job, 0 represents fully on-site, 50 represents hybrid, 100 represents fully remote.
-* Job Title: Title of the job
-* Employee residence: The residence of the country that the work is located.
+* Experience Level ($X_{i_1}$): Level of seniority
+* Remote Ratio ($X_{i_2}$): Level of remoteness in the Job, 0 represents fully on-site, 50 represents hybrid, 100 represents fully remote.
+* Job Title ($X_{i_3}$): Title of the job
+* Employee residence ($X_{i_4}$): The residence of the country that the work is located.
 
 Our model takes the form:
-$Y_i = \beta_0 + \beta_1X_{i_1} + \beta_2X_{i_2} + \beta_3X_{i_3} + \beta_4X_{i_4} + \epsilon$, where $Y_i$ represents the salary in USD, $\beta_0$ is the y-intercept, $X_{i_1}$ through $X_{i_4}$ represent the four predictors, $\beta_{1}$ through $\beta_{4}$ represents the regression coefficients for the predictor variables, and $\epsilon$ is the error term.
+$Y_i = \beta_0 + \beta_1X_{i_1} + \beta_2X_{i_2} + \beta_3X_{i_3} + \beta_4X_{i_4} + \beta_5X_{i_1}X_{i_2} + \epsilon$, where $Y_i$ represents the salary in USD, $\beta_0$ is the y-intercept, $X_{i_1}$ through $X_{i_4}$ represent the four predictors, $\beta_{1}$ through $\beta_{4}$ represent the regression coefficients for the predictor variables, $\beta_{5}$ represents the regression coefficients for the interactive terms of experience level and remote ratio, and $\epsilon$ is the error term.
 
 ```{r}
-lm_model <- readRDS("../lm_model.rds")
-final_model <- readRDS("../final_model.rds")
+lm_model <- readRDS("../salary_prediction/lm_model.rds")
+final_model <- readRDS("../salary_prediction/final_model.rds")
 ```
 
 #### Assumptions and Transformations
@@ -170,16 +171,18 @@ plot(final_model)
 ```
 
 #### Model Summary
-The regression analysis was performed on the transformed salary variable, yielding the following significant results. The intercept $\beta_0$ and coefficients $\beta_{1}$ through $\beta_{4}$ reflect the relationship between each predictor and the salary, adjusted for the other variables in the model. For instance, the coefficients for the experience level categories—Executive (EX), Mid (MI), and Senior (SE)—are positive, indicating that higher experience levels are associated with higher salaries.
+The regression analysis was performed on the transformed salary variable, yielding the following significant results. The intercept $\beta_0$ and coefficients $\beta_{1}$ through $\beta_{4}$ reflect the relationship between each predictor and the salary, adjusted for the other variables in the model. For instance, the coefficients for the experience level categories—Entry (EN), Mid (MI), and Senior (SE), Executive (EX)—are positive and the values of coefficients are increasing, indicating that higher experience levels have higher salaries.
 
-The job title and employee residence predictors also show varying levels of influence on the salary, with some categories being significant and others not. For example, the negative coefficients for various job titles suggest that when compared to the baseline category (not shown), these roles tend to have lower salaries. Conversely, positive coefficients for countries like the United States and Canada indicate higher salaries compared to the baseline residence.
+The job title and employee residence predictors also show varying levels of influence on the salary, with some categories being significant and others not. For example, the negative coefficients for various job titles (eg. Analytics Engineer, Data Analyst) suggest that when compared to the baseline category (AI Programmer), these roles tend to have lower salaries. Conversely, positive coefficients for countries like the United States and Canada indicate higher salaries compared to the baseline residence (Argentina).
 
-The model's performance was evaluated using the Residual Standard Error (RSE), Multiple R-squared, and F-statistic. The Multiple R-squared of 0.5204 suggests that approximately 52% of the variability in the transformed salary is explained by the model. The F-statistic is highly significant, indicating that the model fits the data better than a model with no predictors.
+The model's performance was evaluated using the Residual Standard Error (RSE), Multiple R-squared, and F-statistic. The Multiple R-squared of 0.5525817 suggests that approximately 55% of the variability in the transformed salary is explained by the model. The F-statistic is highly significant, indicating that the model fits the data better than a model with no predictors.
+```{r}
+paste("Multiple R-squared of the transformed linear model is", summary(final_model)$r.squared)
+paste("Adjusted Multiple R-squared of the transformed linear model is", summary(final_model)$adj.r.squared)
+```
 
-#### Interpretation and Appropriateness
+
 The model appears appropriate for the data, given the improvements post-transformation and the significant predictors. However, there is still unexplained variance, suggesting the potential for model enhancement or the existence of non-linear relationships not captured by this model.
-
-Interpreting the results for both technical and non-technical audiences hinges on clear communication of the coefficients' implications on salary and the influence of the Box-Cox transformation on the interpretation of these coefficients. For a technical audience, the focus would be on the statistical significance and the magnitude of the coefficients. In contrast, for a non-technical audience, it is more pertinent to emphasize the general trends and the relative impact of each predictor on the salary.
 
 In conclusion, the linear regression model, with the applied Box-Cox transformation, provides a robust framework for understanding the determinants of data science job salaries. It reveals the crucial role of experience, job title, and geographic location in shaping salary outcomes, offering valuable insights for job seekers and employers alike.
 
@@ -187,7 +190,7 @@ In conclusion, the linear regression model, with the applied Box-Cox transformat
 
 The insights drawn from our regression analysis provide substantial implications for the data science job market. Our model's results, depicted in the regression coefficient plot below, offer a quantified look into how various factors affect data science salaries.
 
-The coefficient plot indicates that geographical location has a significant impact on salaries, with 'United States' and 'Canada' showing the most substantial positive effect. Conversely, job titles such as 'Data Analyst' and 'Business Intelligence Engineer' are associated with lower salaries, suggesting that certain roles within the data science field command premium pay. The positive coefficients for experience levels—particularly 'Executive' (EX)—highlight the premium on experience in the industry.
+The coefficient plot indicates that geographical location has a significant impact on salaries, with 'United States' and 'Canada' showing the most substantial positive effect. Conversely, job titles such as 'Data Analyst' and 'Data Specialist' are associated with lower salaries, suggesting that certain roles within the data science field command premium pay. The positive coefficients for experience levels—particularly 'Executive' (EX)—highlight the premium on experience in the industry.
 
 ```{r}
 model_summary <- summary(final_model)
@@ -215,15 +218,16 @@ ggplot(coef_df, aes(x = Coefficient, y = reorder(Variable, Coefficient))) +
 These findings have direct implications for data science professionals assessing job offers and career paths. The model underscores the importance of location and role specificity in salary negotiations. For instance, a Data Scientist in the United States can expect a significantly different salary from their counterpart in Spain, emphasizing the economic variances across regions.
 
 #### Interactive Salary Prediction Tool
-An interactive R Shiny web application is also created to allow users to predict the range of salaries based on their job title, work model, seniority level, and country of residence. There are 5 tabs of the application. The application's first tab is shown as the first picture below, which showcases the predicted salary range for selected inputs. When people select inputs of Job Title, Work Model, Seniority Level, and Employment Residence, the application will provide an immediate, personalized salary range estimate that reflects the model's outputs.
+An interactive R Shiny web application is also created to allow users to predict the range of salaries based on their job title, work mode, seniority level, and country of residence. There are 5 tabs of the application. The application's first tab is shown as the first picture below, which showcases the predicted salary range for selected inputs. When people select inputs of Job Title, Work Mode, Seniority Level, and Employment Residence, the application will provide an immediate, personalized salary range estimate that reflects the model's outputs.
 
-![](~/salary_prediction_web1.png)
+
+![](web1.png)
 
 The subsequent 4 tabs offer an exploratory interface for users to understand salary distributions across different categories. For example, as shown in the second picture of the web application below, the second tab allows for exploring different data science related jobs. Selecting a job title reveals the distribution of salaries by remote ratio, experience level, and a world map visualizing the average salary by country. It also visualizes the top 3 salary combination of remote ratio, experience level, and employee residence based on the title selected. This interactive exploration not only adds depth to the user's understanding of the market but also visualizes the model's interpretability across different demographics.
 
-The tabs focusing on Seniority Level, Work Model, and Country (tabs 3 to 5, not shown here) further demonstrate the multifaceted nature of the data science salary landscape with similar features as the second tab. Users can examine the variances in salary distributions within each category and identify top 3 salary combinations, facilitating an informed decision-making process for career development.
+The tabs focusing on Seniority Level, Work Mode, and Country (tabs 3 to 5, not shown here) further demonstrate the multifaceted nature of the data science salary landscape with similar features as the second tab. Users can examine the variances in salary distributions within each category and identify top 3 salary combinations, facilitating an informed decision-making process for career development.
 
-![](~/Documents/GitHub/capstone-project/Capstone project/Final Report/salary_prediction_web2.png)
+![](web2.png)
 
 ## Section V: Conclusions and Recommendations
 
